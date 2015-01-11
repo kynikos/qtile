@@ -521,6 +521,7 @@ class _Window(command.CommandObject):
         return self.window.get_wm_type() != 'notification'
 
     def set_input_focus(self, lock=False):
+        print("INPUT", self.window, lock)  # **********************************************
         self.window.set_input_focus()
         self.focus_lock = lock
 

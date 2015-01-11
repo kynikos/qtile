@@ -607,7 +607,7 @@ class Qtile(command.CommandObject):
         self.currentScreen.resize()
 
     def manage(self, w):
-        print("MANAGE1", w)  # ******************************************************************
+        print("MANAGE1", w, self.focusedWindow)  # ******************************************************************
         try:
             attrs = w.get_attributes()
             internal = w.get_property("QTILE_INTERNAL")
