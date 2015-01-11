@@ -437,7 +437,7 @@ class Prompt(base._TextBox):
         self.completer = self.completers[complete](self.qtile)
         self.strict_completer = strict_completer
         self._update()
-        self.bar.widget_grab_keyboard(self)
+        self.bar.widget_grab_keyboard(self, lock_focus=True)
         if self.record_history:
             self.completer_history = self.history[complete]
             self.position = len(self.completer_history)
