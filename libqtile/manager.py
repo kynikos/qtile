@@ -604,6 +604,7 @@ class Qtile(command.CommandObject):
         self.currentScreen.resize()
 
     def manage(self, w):
+        print("MANAGE1", w)  # ******************************************************************
         try:
             attrs = w.get_attributes()
             internal = w.get_property("QTILE_INTERNAL")
@@ -644,6 +645,7 @@ class Qtile(command.CommandObject):
                     else:
                         focus = not focus_locked and c.can_steal_focus()
 
+                    print("MANAGE2", focus)  # *************************************************
                     self.currentScreen.group.add(c, focus=focus)
                 self.update_client_list()
                 hook.fire("client_managed", c)
