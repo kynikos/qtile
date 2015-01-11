@@ -264,7 +264,7 @@ class Bar(Gap, configurable.Configurable):
                 e.detail
             )
 
-    def widget_grab_keyboard(self, widget):
+    def widget_grab_keyboard(self, widget, lock_focus=False):
         """
             A widget can call this method to grab the keyboard focus
             and receive keyboard messages. When done,
@@ -272,12 +272,13 @@ class Bar(Gap, configurable.Configurable):
         """
         self.window.handle_KeyPress = widget.handle_KeyPress
         self.saved_focus = self.qtile.currentWindow
-        self.window.set_input_focus()
+        self.window.set_input_focus(lock_focus)
 
     def widget_ungrab_keyboard(self):
         """
             Removes the widget's keyboard handler.
         """
+        self.window.unlock_focus()
         del self.window.handle_KeyPress
         if self.saved_focus is not None:
             self.saved_focus.set_input_focus()
