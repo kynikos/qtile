@@ -547,7 +547,10 @@ class Qtile(command.CommandObject):
         except IndexError:
             return None
         else:
-            return self.windowMap[wid]
+            try:
+                return self.windowMap[wid]
+            except KeyError:
+                return None
 
     def scan(self):
         _, _, children = self.root.query_tree()
