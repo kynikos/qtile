@@ -272,7 +272,7 @@ class Bar(Gap, configurable.Configurable):
         """
         self.window.handle_KeyPress = widget.handle_KeyPress
         self.saved_focus = self.qtile.currentWindow
-        self.window.window.set_input_focus()
+        self.window.set_input_focus()
 
     def widget_ungrab_keyboard(self):
         """
@@ -280,7 +280,7 @@ class Bar(Gap, configurable.Configurable):
         """
         del self.window.handle_KeyPress
         if self.saved_focus is not None:
-            self.saved_focus.window.set_input_focus()
+            self.saved_focus.set_input_focus()
 
     def draw(self):
         if self.queued_draws == 0:

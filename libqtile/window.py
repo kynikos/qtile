@@ -519,6 +519,9 @@ class _Window(command.CommandObject):
     def can_steal_focus(self):
         return self.window.get_wm_type() != 'notification'
 
+    def set_input_focus(self):
+        self.window.set_input_focus()
+
     def focus(self, warp):
 
         # Workaround for misbehaving java applications (actually it might be
@@ -561,7 +564,7 @@ class _Window(command.CommandObject):
 
             # Never send FocusIn to java windows
             if not is_java and self.hints['input']:
-                self.window.set_input_focus()
+                self.set_input_focus()
             try:
                 if warp and self.qtile.config.cursor_warp:
                     self.window.warp_pointer(self.width // 2, self.height // 2)
