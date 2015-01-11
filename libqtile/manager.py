@@ -538,6 +538,17 @@ class Qtile(command.CommandObject):
     def currentWindow(self):
         return self.currentScreen.group.currentWindow
 
+    @property
+    def focusedWindow(self):
+        # self.currentWindow may not always be the real focused window, for
+        # example when an internal window (e.g. the bar) has focus
+        try:
+            wid = self.root.get_property("_NET_ACTIVE_WINDOW", unpack=int)[0]
+        except IndexError:
+            return None
+        else:
+            return self.windowMap[wid]
+
     def scan(self):
         _, _, children = self.root.query_tree()
         for item in children:
