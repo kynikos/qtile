@@ -644,6 +644,7 @@ class Qtile(command.CommandObject):
                     try:
                         focus_locked = self.focusedWindow.locks_focus()
                     except AttributeError:
+                        # self.focusedWindow can be None
                         focus = c.can_steal_focus()
                     else:
                         focus = not focus_locked and c.can_steal_focus()
