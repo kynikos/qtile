@@ -539,6 +539,7 @@ class _Window(command.CommandObject):
         # 'sun-awt-X11-XDialogPeer' is a dialog of a java application. Do not
         # send any event.
 
+        print("FOCUS1", self)  # *********************************************************************
         cls = self.window.get_wm_class() or ''
         is_java_main = 'sun-awt-X11-XFramePeer' in cls
         is_java_dialog = 'sun-awt-X11-XDialogPeer' in cls
@@ -569,6 +570,7 @@ class _Window(command.CommandObject):
             # Never send FocusIn to java windows
             if not is_java and self.hints['input']:
                 self.window.set_input_focus()
+                print("FOCUS2")  # *********************************************************************
                 self.focus_lock = lock
             try:
                 if warp and self.qtile.config.cursor_warp:

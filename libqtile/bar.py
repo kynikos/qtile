@@ -270,6 +270,7 @@ class Bar(Gap, configurable.Configurable):
             and receive keyboard messages. When done,
             widget_ungrab_keyboard() must be called.
         """
+        print("GRAB")  # *********************************************************************
         self.window.handle_KeyPress = widget.handle_KeyPress
         self.saved_focus = self.qtile.currentWindow
         self.window.focus(False, lock=lock_focus)
@@ -278,6 +279,7 @@ class Bar(Gap, configurable.Configurable):
         """
             Removes the widget's keyboard handler.
         """
+        print("UNGRAB")  # *********************************************************************
         self.window.unlock_focus()
         del self.window.handle_KeyPress
         if self.saved_focus is not None:
