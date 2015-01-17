@@ -449,6 +449,7 @@ class Window(object):
         self.conn.conn.core.KillClient(self.wid)
 
     def set_input_focus(self):
+        print("SET_FOCUS", self)  # ***********************************************************
         self.conn.conn.core.SetInputFocus(
             xcffib.xproto.InputFocus.PointerRoot,
             self.wid,
