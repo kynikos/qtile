@@ -302,14 +302,18 @@ class TaskList(base._Widget, base.PaddingMixin, base.MarginMixin):
         return pattern
 
     def setup_default_icon(self):
+        # See also discussion in PR #608 *********************************************
+        # Add licensing to SVG header *************************************************
+        # Also update setup.py etc. *******************************************************
+        # Serialize the bitmaps? *****************************************************
         sizes = sorted(
-            # TODO: retrieve the available sizes from the file names
+            # TODO: retrieve the available sizes from the file names *********************
             (16, 24, 32, 48),
             key=lambda s: abs(self.icon_size - s)
         )
         width = height = sizes[0]
 
-        # TODO: the path must be found in a better way
+        # TODO: the path must be found in a better way *********************************
         surface = cairocffi.ImageSurface.create_from_png(os.path.join(
             os.getcwd(), "resources", "default_window_{}.png".format(width)))
 
