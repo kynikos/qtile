@@ -47,7 +47,8 @@ class Sep(base._Widget):
                             'deprecated. Please use size_percent.')
             config["size_percent"] = height_percent
 
-        length = config.get("padding", 2) * 2 + config.get("linewidth", 1)
+        length = config.get("padding", Sep.defaults["padding"][0]) * 2 + \
+                        config.get("linewidth", Sep.defaults["linewidth"][0])
         base._Widget.__init__(self, length, **config)
         self.add_defaults(Sep.defaults)
         self.length = self.padding + self.linewidth
