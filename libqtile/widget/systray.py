@@ -60,12 +60,21 @@ class Icon(window._Window):
             width = icon_size
             height = icon_size
 
-        if height > icon_size:
-            width = width * icon_size // height
-            height = icon_size
-        if height <= 0:
-            width = icon_size
-            height = icon_size
+        # Improve ***********************************************************************
+        if self.systray.bar.horizontal:
+            if height > icon_size:
+                width = width * icon_size // height
+                height = icon_size
+            if height <= 0:
+                width = icon_size
+                height = icon_size
+        else:
+            if width > icon_size:
+                height = height * icon_size // width
+                width = icon_size
+            if width <= 0:
+                width = icon_size
+                height = icon_size
 
         self.width = width
         self.height = height
