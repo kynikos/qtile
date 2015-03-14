@@ -52,6 +52,7 @@ __all__ = [
 class _Graph(base._Widget):
     fixed_upper_bound = False
     defaults = {
+        "width": (100, "Width of the widget in pixels."),
         "graph_color": ("18BAEB", "Graph color"),
         "fill_color": ("1667EB.3", "Fill color for linefill graph"),
         "border_color": ("215578", "Widget border color"),
@@ -65,8 +66,9 @@ class _Graph(base._Widget):
         "start_pos": ("bottom", "Drawer starting position ('bottom'/'top')"),
     }
 
-    def __init__(self, width=100, **config):
-        base._Widget.__init__(self, width, **config)
+    def __init__(self, **config):
+        base._Widget.__init__(self, config.get("width",
+                                        _Graph.defaults["width"][0]), **config)
         self.add_defaults(_Graph.defaults)
         self.values = [0] * self.samples
         self.maxvalue = 0
