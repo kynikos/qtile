@@ -314,7 +314,8 @@ class Prompt(base._TextBox):
         None: NullCompleter
     }
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = {"cursor": (True, "Show a cursor"),
+    defaults = {"name": ("prompt", ""),
+                "cursor": (True, "Show a cursor"),
                 "cursorblink": (0.5, "Cursor blink rate. 0 to disable."),
                 "cursor_color": ("bef098",
                  "Color for the cursor and text over it."),
@@ -332,10 +333,9 @@ class Prompt(base._TextBox):
                 "visual_bell_time": (0.2,
                  "Visual bell duration (in seconds).")}
 
-    def __init__(self, name="prompt", **config):
+    def __init__(self, **config):
         base._TextBox.__init__(self, "", bar.CALCULATED, **config)
         self.add_defaults(Prompt.defaults)
-        self.name = name
         self.active = False
         self.completer = None
         # Define key handlers (action to do when hit an specific key)
