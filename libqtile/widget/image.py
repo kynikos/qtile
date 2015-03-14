@@ -32,19 +32,23 @@ class Image(base._Widget, base.MarginMixin):
     """Display a PNG image on the bar"""
     orientations = base.ORIENTATION_BOTH
     defaults = {
+        "length": (bar.CALCULATED, "Length of the widget. Can be either "
+                                  "``bar.CALCULATED``, ``bar.STRETCH`` or a "
+                                  "length in pixels."),
         "scale": (True, "Enable/Disable image scaling"),
         "filename": (None, "PNG Image filename. Can contain '~'"),
     }
 
-    def __init__(self, length=bar.CALCULATED, width=None, **config):
+    def __init__(self, width=None, **config):
         # 'width' was replaced by 'length' since the widget can be installed in
         # vertical bars
         if width is not None:
             base.deprecated('width kwarg or positional argument is '
                             'deprecated. Please use length.')
-            length = width
+            config["length"] = width
 
-        base._Widget.__init__(self, length, **config)
+        base._Widget.__init__(self, config.get("length",
+                                        Image.defaults["length"][0]), **config)
         self.add_defaults(Image.defaults)
         self.add_defaults(base.MarginMixin.defaults)
 
