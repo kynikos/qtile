@@ -29,6 +29,8 @@ class Clipboard(base._TextBox):
     """Display current clipboard contents"""
     orientations = base.ORIENTATION_HORIZONTAL
     defaults = {
+        "width": (bar.CALCULATED, "Width of the widget. Can be either "
+                               "``bar.CALCULATED`` or a width in pixels."),
         "selection": ("CLIPBOARD",
             "the selection to display(CLIPBOARD or PRIMARY)"),
         "max_width": (10, "maximum number of characters to display "
@@ -44,8 +46,9 @@ class Clipboard(base._TextBox):
              "text to display when the wm_class is blacklisted")
     }
 
-    def __init__(self, width=bar.CALCULATED, **config):
-        base._TextBox.__init__(self, "", width, **config)
+    def __init__(self, **config):
+        base._TextBox.__init__(self, "", config.get("width",
+                                    Clipboard.defaults["width"][0]), **config)
         self.add_defaults(Clipboard.defaults)
         self.timeout_id = None
 
