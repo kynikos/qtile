@@ -44,9 +44,15 @@ class CurrentLayout(base._TextBox):
     the bar containing the widget, is on.
     """
     orientations = base.ORIENTATION_HORIZONTAL
+    defaults = {
+        "width": (bar.CALCULATED, "Width of the widget. Can be either "
+                               "``bar.CALCULATED`` or a width in pixels."),
+    }
 
-    def __init__(self, width=bar.CALCULATED, **config):
-        base._TextBox.__init__(self, "", width, **config)
+    def __init__(self, **config):
+        base._TextBox.__init__(self, "", config.get("width",
+                                CurrentLayout.defaults["width"][0]), **config)
+        self.add_defaults(CurrentLayout.defaults)
 
     def _configure(self, qtile, bar):
         base._TextBox._configure(self, qtile, bar)
