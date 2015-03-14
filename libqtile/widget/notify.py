@@ -35,6 +35,8 @@ class Notify(base._TextBox):
     """A notify widget"""
     orientations = base.ORIENTATION_HORIZONTAL
     defaults = {
+        "width": (bar.CALCULATED, "Width of the widget. Can be either "
+                               "``bar.CALCULATED`` or a width in pixels."),
         "foreground_urgent": ("ff0000", "Foreground urgent priority colour"),
         "foreground_low": ("dddddd", "Foreground low priority  colour"),
         "default_timeout": (
@@ -45,7 +47,8 @@ class Notify(base._TextBox):
     }
 
     def __init__(self, width=bar.CALCULATED, **config):
-        base._TextBox.__init__(self, "", width, **config)
+        base._TextBox.__init__(self, "", config.get("width",
+                                        Notify.defaults["width"][0]), **config)
         self.add_defaults(Notify.defaults)
         notifier.register(self.update)
         self.current_id = 0
