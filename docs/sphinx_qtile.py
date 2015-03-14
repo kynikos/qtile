@@ -35,6 +35,7 @@ qtile_module_template = Template('''
     {% if no_commands %}:no-commands:{% endif %}
 ''')
 
+# Test *********************************************************************************
 qtile_class_template = Template('''
 {{ class_name }}
 {{ class_underline }}
