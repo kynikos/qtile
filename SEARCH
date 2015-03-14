@@ -1,0 +1,24 @@
+Find: global_defaults
+/mnt/archive/Development/qtile/libqtile/configurable.py:23:    global_defaults = {}
+/mnt/archive/Development/qtile/libqtile/configurable.py:55:            return self.global_defaults[name]
+/mnt/archive/Development/qtile/libqtile/manager.py:147:            _Widget.global_defaults = config.widget_defaults
+/mnt/archive/Development/qtile/libqtile/manager.py:149:            _Widget.global_defaults = {}
+
+Find: _widget_defaults
+/mnt/archive/Development/qtile/libqtile/widget/image.py:58:        self._widget_defaults["margin"] = 0
+/mnt/archive/Development/qtile/libqtile/configurable.py:26:        self._widget_defaults = {}
+/mnt/archive/Development/qtile/libqtile/configurable.py:34:            self._widget_defaults[key] = defaults[key][0]
+/mnt/archive/Development/qtile/libqtile/configurable.py:37:        if name == "_widget_defaults":
+/mnt/archive/Development/qtile/libqtile/configurable.py:60:        return self._widget_defaults[name]
+
+Find: extrafallback
+/mnt/archive/Development/qtile/libqtile/widget/base.py:528:    padding_x = configurable.ExtraFallback('padding_x', 'padding')
+/mnt/archive/Development/qtile/libqtile/widget/base.py:529:    padding_y = configurable.ExtraFallback('padding_y', 'padding')
+/mnt/archive/Development/qtile/libqtile/widget/base.py:547:    margin_x = configurable.ExtraFallback('margin_x', 'margin')
+/mnt/archive/Development/qtile/libqtile/widget/base.py:548:    margin_y = configurable.ExtraFallback('margin_y', 'margin')
+/mnt/archive/Development/qtile/libqtile/configurable.py:63:class ExtraFallback(object):
+
+Find: _user_config
+/mnt/archive/Development/qtile/libqtile/configurable.py:27:        self._user_config = config
+/mnt/archive/Development/qtile/libqtile/configurable.py:50:            return self._user_config[name]
+

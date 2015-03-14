@@ -18,6 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# This module can be further simplified ************************************************
+
 
 class Configurable(object):
     global_defaults = {}

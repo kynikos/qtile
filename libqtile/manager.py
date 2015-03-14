@@ -161,9 +161,7 @@ class Qtile(command.CommandObject):
             self.dgroups = DGroups(self, self.config.groups, key_binder)
 
         if hasattr(config, "widget_defaults") and config.widget_defaults:
-            _Widget.global_defaults = config.widget_defaults
-        else:
-            _Widget.global_defaults = {}
+            _Widget.global_defaults.update(config.widget_defaults)
 
         if hasattr(config, "extension_defaults") and config.extension_defaults:
             _Extension.global_defaults = config.extension_defaults
