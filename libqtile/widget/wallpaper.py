@@ -29,6 +29,7 @@ from libqtile.log_utils import logger
 
 
 class Wallpaper(base._TextBox):
+    orientations = base.ORIENTATION_HORIZONTAL
     defaults = [
         ("directory", "~/Pictures/wallpapers/", "Wallpaper Directory"),
         ("wallpaper", None, "Wallpaper"),
