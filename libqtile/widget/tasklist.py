@@ -37,6 +37,8 @@ class TaskList(base._Widget, base.PaddingMixin, base.MarginMixin):
     Contrary to WindowTabs this is an interactive widget.  The window that
     currently has focus is highlighted.
     """
+    # TODO: Allow showing only the icons (use a default icon)
+    # TODO: Allow grouping windows of the same application
     orientations = base.ORIENTATION_HORIZONTAL
     defaults = [
         ("font", "sans", "Default font"),
