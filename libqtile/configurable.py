@@ -36,24 +36,29 @@ class Configurable(object):
 
     def __getattr__(self, name):
         if name == "_variable_defaults":
-            raise AttributeError
-        found, value = self._find_default(name)
-        if found:
-            setattr(self, name, value)
-            return value
-        else:
+            raise AttributeError()
+        try:
+            value = self._find_default(name)
+        except KeyError:
             cname = self.__class__.__name__
             raise AttributeError("%s has no attribute: %s" % (cname, name))
+        else:
+            setattr(self, name, value)
+            return value
 
     def _find_default(self, name):
-        """Returns a tuple (found, value)"""
-        defaults = self._variable_defaults.copy()
-        defaults.update(self.global_defaults)
-        defaults.update(self._user_config)
-        if name in defaults:
-            return (True, defaults[name])
-        else:
-            return (False, None)
+        try:
+            return self._user_config[name]
+        except KeyError:
+            pass
+
+        try:
+            return self.global_defaults[name]
+        except KeyError:
+            pass
+
+        # This can still raise KeyError
+        return self._variable_defaults[name]
 
 
 class ExtraFallback(object):
@@ -68,15 +73,17 @@ class ExtraFallback(object):
         self.fallback = fallback
 
     def __get__(self, instance, owner=None):
-        retval = getattr(instance, self.hidden_attribute, None)
+        try:
+            return getattr(instance, self.hidden_attribute)
+        except AttributeError:
+            pass
 
-        if retval is None:
-            _found, retval = Configurable._find_default(instance, self.name)
+        try:
+            return Configurable._find_default(instance, self.name)
+        except KeyError:
+            pass
 
-        if retval is None:
-            retval = getattr(instance, self.fallback, None)
-
-        return retval
+        return getattr(instance, self.fallback, None)
 
     def __set__(self, instance, value):
         """Set own value to a hidden attribute of the object"""
