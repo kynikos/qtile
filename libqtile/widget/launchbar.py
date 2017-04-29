@@ -88,6 +88,7 @@ class LaunchBar(base._Widget):
         # For now, ignore the comments but maybe one day it will be useful
         self.progs = dict(enumerate([{'name': prog[0], 'cmd': prog[1],
                                       'comment': prog[2] if len(prog) > 2 else
+                                      # self.progs is set when calling the super-constructor, right? *************
                                       None} for prog in self.progs]))
         self.progs_name = set([prog['name'] for prog in self.progs.values()])
         self.length_type = bar.STATIC

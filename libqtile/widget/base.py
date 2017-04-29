@@ -94,6 +94,12 @@ class _Widget(command.CommandObject, configurable.Configurable):
     offsety = None
     defaults = {"background": (None, "Widget background color")}
 
+    # Moving 'length' and similar to the various 'defaults' dictionaries *********************
+    #   creates conflicts with the normal attributes *****************************************
+    #  Maybe the whole mechanism should be rethought, and length should be *******************
+    #   completely set in _configure *********************************************************
+    #  Also, a way to avoid conflicts in general should be devised ***************************
+
     def __init__(self, length, **config):
         """
             length: bar.STRETCH, bar.CALCULATED, or a specified length.

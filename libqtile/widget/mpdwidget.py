@@ -74,6 +74,13 @@ class Mpd(base.ThreadPoolText):
     def __init__(self, **config):
         super(Mpd, self).__init__('MPD Widget', **config)
         self.add_defaults(Mpd.defaults)
+        # self.host is set when calling the super-constructor, right? *************
+        # self.port is set when calling the super-constructor, right? *************
+        # self.password is set when calling the super-constructor, right? *************
+        # self.fmt_playing is set when calling the super-constructor, right? *************
+        # self.fmt_stopped is set when calling the super-constructor, right? *************
+        # self.msg_nc is set when calling the super-constructor, right? *************
+        # self.do_color_progress is set when calling the super-constructor, right? *************
         self.inc = 2
         self.client = mpd.MPDClient()
         self.connected = None

@@ -336,6 +336,7 @@ class Prompt(base._TextBox):
     def __init__(self, **config):
         base._TextBox.__init__(self, "", bar.CALCULATED, **config)
         self.add_defaults(Prompt.defaults)
+        # self.name should be set by the super-constructor, right? *******************************
         self.active = False
         self.completer = None
         # Define key handlers (action to do when hit an specific key)

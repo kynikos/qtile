@@ -52,6 +52,9 @@ class Mpris(base._TextBox):
         base._TextBox.__init__(self, " ", config.get("width",
                                         Mpris.defaults["width"][0]), **config)
         self.add_defaults(Mpris.defaults)
+
+        # self.name is set when calling the super-constructor, right? *************
+        # self.objname is set when calling the super-constructor, right? *************
         self.dbus_loop = None
         self.connected = False
 
