@@ -33,11 +33,14 @@ class WindowName(base._TextBox):
     orientations = base.ORIENTATION_HORIZONTAL
     defaults = {
         'show_state': (True, 'show window status before window name'),
-        'for_current_screen': (False, 'instead of this bars screen use currently active screen')
+        'for_current_screen': (False, 'instead of this bars screen use currently active screen'),
+        'width': (bar.STRETCH, "Width of the widget. Can be either "
+                               "``bar.STRETCH`` or a width in pixels."),
     }
 
-    def __init__(self, width=bar.STRETCH, **config):
-        base._TextBox.__init__(self, width=width, **config)
+    def __init__(self, **config):
+        base._TextBox.__init__(self, width=config.get("width",
+                                    WindowName.defaults["width"][0]), **config)
         self.add_defaults(WindowName.defaults)
 
     def _configure(self, qtile, bar):
