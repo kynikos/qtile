@@ -25,6 +25,7 @@
 
 from __future__ import division
 
+import os.path
 import cairocffi
 from .. import bar, hook
 from . import base
@@ -204,6 +205,7 @@ class TaskList(base._Widget, base.PaddingMixin, base.MarginMixin):
             self.fontshadow,
             wrap=False
         )
+        self.setup_default_icon()
         self.setup_hooks()
 
     def update(self, window=None):
@@ -284,9 +286,39 @@ class TaskList(base._Widget, base.PaddingMixin, base.MarginMixin):
         elif window:
             window.toggle_minimize()
 
+    def _convert_surface_to_pattern(self, surface, width, height):
+        pattern = cairocffi.SurfacePattern(surface)
+
+        scaler = cairocffi.Matrix()
+
+        if height != self.icon_size:
+            sp = height / self.icon_size
+            height = self.icon_size
+            width /= sp
+            scaler.scale(sp, sp)
+
+        pattern.set_matrix(scaler)
+        self._icons_cache[window.window.wid] = pattern
+        return pattern
+
+    def setup_default_icon(self):
+        sizes = sorted(
+            # TODO: retrieve the available sizes from the file names
+            (16, 24, 32, 48),
+            key=lambda s: abs(self.icon_size - s)
+        )
+        width = height = sizes[0]
+
+        # TODO: the path must be found in a better way
+        surface = cairocffi.ImageSurface.create_from_png(os.path.join(
+            os.getcwd(), "resources", "default_window_{}.png".format(width)))
+
+        self.default_icon = self._convert_surface_to_pattern(surface, width,
+                                                                        height)
+
     def get_window_icon(self, window):
         if not window.icons:
-            return None
+            return self.default_icon
 
         cache = self._icons_cache.get(window.window.wid)
         if cache:
@@ -299,28 +331,19 @@ class TaskList(base._Widget, base.PaddingMixin, base.MarginMixin):
         icon = icons[0]
         width, height = map(int, icon[0].split("x"))
 
-        img = cairocffi.ImageSurface.create_for_data(
+        surface = cairocffi.ImageSurface.create_for_data(
             icon[1],
             cairocffi.FORMAT_ARGB32,
             width,
             height
         )
 
-        surface = cairocffi.SurfacePattern(img)
+        pattern = self._convert_surface_to_pattern(surface, width, height)
+        self._icons_cache[window.window.wid] = pattern
+        return pattern
 
-        scaler = cairocffi.Matrix()
-
-        if height != self.icon_size:
-            sp = height / self.icon_size
-            height = self.icon_size
-            width /= sp
-            scaler.scale(sp, sp)
-        surface.set_matrix(scaler)
-        self._icons_cache[window.window.wid] = surface
-        return surface
-
-    def draw_icon(self, surface, offset):
-        if not surface:
+    def draw_icon(self, pattern, offset):
+        if not pattern:
             return
 
         x = offset + self.borderwidth + self.padding_x
@@ -328,7 +351,7 @@ class TaskList(base._Widget, base.PaddingMixin, base.MarginMixin):
 
         self.drawer.ctx.save()
         self.drawer.ctx.translate(x, y)
-        self.drawer.ctx.set_source(surface)
+        self.drawer.ctx.set_source(pattern)
         self.drawer.ctx.paint()
         self.drawer.ctx.restore()
 
