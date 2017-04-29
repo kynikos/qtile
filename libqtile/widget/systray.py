@@ -183,6 +183,7 @@ class Systray(window._Window, base._Widget):
         return False
 
     def draw(self):
+        # TODO *****************************************************************************
         def GIVE_ME_A_BETTER_NAME(icon):
             icon.unhide()
             data = [
