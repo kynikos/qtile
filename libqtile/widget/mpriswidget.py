@@ -39,11 +39,11 @@ class Mpris(base._TextBox):
     """
     orientations = base.ORIENTATION_HORIZONTAL
 
-    defaults = [
-        ('name', 'clementine', 'Name of the widget'),
-        ('objname', 'org.mpris.clementine', 'DBUS object to connect to'),
-        ('stop_pause_text', 'Stopped', "Optional text to display when in the stopped/paused state"),
-    ]
+    defaults = {
+        'name': ('clementine', 'Name of the widget'),
+        'objname': ('org.mpris.clementine', 'DBUS object to connect to'),
+        'stop_pause_text': ('Stopped', "Optional text to display when in the stopped/paused state"),
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, " ", **config)

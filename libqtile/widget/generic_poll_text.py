@@ -19,9 +19,9 @@ except ImportError:
 class GenPollText(base.ThreadedPollText):
     """A generic text widget that polls using poll function to get the text"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('func', None, 'Poll Function'),
-    ]
+    defaults = {
+        'func': (None, 'Poll Function'),
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)
@@ -36,15 +36,15 @@ class GenPollText(base.ThreadedPollText):
 class GenPollUrl(base.ThreadedPollText):
     """A generic text widget that polls an url and parses it using parse function"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('url', None, 'Url'),
-        ('data', None, 'Post Data'),
-        ('parse', None, 'Parse Function'),
-        ('json', True, 'Is Json?'),
-        ('user_agent', 'Qtile', 'Set the user agent'),
-        ('headers', {}, 'Extra Headers'),
-        ('xml', False, 'Is XML?'),
-    ]
+    defaults = {
+        'url': (None, 'Url'),
+        'data': (None, 'Post Data'),
+        'parse': (None, 'Parse Function'),
+        'json': (True, 'Is Json?'),
+        'user_agent': ('Qtile', 'Set the user agent'),
+        'headers': ({}, 'Extra Headers'),
+        'xml': (False, 'Is XML?'),
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)

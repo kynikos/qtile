@@ -34,14 +34,14 @@ from .base import _SimpleLayoutBase
 
 class Zoomy(_SimpleLayoutBase):
     """A layout with single active windows, and few other previews at the right"""
-    defaults = [
-        ("columnwidth", 150, "Width of the right column"),
-        ("property_name", "ZOOM", "Property to set on zoomed window"),
-        ("property_small", "0.1", "Property value to set on zoomed window"),
-        ("property_big", "1.0", "Property value to set on normal window"),
-        ("margin", 0, "Margin of the layout"),
-        ("name", "zoomy", "Name of this layout."),
-    ]
+    defaults = {
+        "columnwidth": (150, "Width of the right column"),
+        "property_name": ("ZOOM", "Property to set on zoomed window"),
+        "property_small": ("0.1", "Property value to set on zoomed window"),
+        "property_big": ("1.0", "Property value to set on normal window"),
+        "margin": (0, "Margin of the layout"),
+        "name": ("zoomy", "Name of this layout."),
+    }
 
     def __init__(self, **config):
         _SimpleLayoutBase.__init__(self, **config)

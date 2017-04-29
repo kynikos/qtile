@@ -22,9 +22,9 @@ from libqtile import configurable
 
 
 class ConfigurableWithFallback(configurable.Configurable):
-    defaults = [
-        ("foo", 3, ""),
-    ]
+    defaults = {
+        "foo": (3, ""),
+    }
 
     bar = configurable.ExtraFallback('bar', 'foo')
 

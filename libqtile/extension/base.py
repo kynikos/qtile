@@ -28,14 +28,14 @@ class _Extension(configurable.Configurable):
 
     installed_extensions = []
 
-    defaults = [
-        ("font", "sans", "defines the font name to be used"),
-        ("fontsize", None, "defines the font size to be used"),
-        ("background", None, "defines the normal background color"),
-        ("foreground", None, "defines the normal foreground color"),
-        ("selected_background", None, "defines the selected background color"),
-        ("selected_foreground", None, "defines the selected foreground color"),
-    ]
+    defaults = {
+        "font": ("sans", "defines the font name to be used"),
+        "fontsize": (None, "defines the font size to be used"),
+        "background": (None, "defines the normal background color"),
+        "foreground": (None, "defines the normal foreground color"),
+        "selected_background": (None, "defines the selected background color"),
+        "selected_foreground": (None, "defines the selected foreground color"),
+    }
 
     def __init__(self, **config):
         configurable.Configurable.__init__(self, **config)
@@ -62,13 +62,13 @@ class RunCommand(_Extension):
     Also consider simply using lazy.spawn() or writing a
     `client <http://docs.qtile.org/en/latest/manual/commands/scripting.html>`_.
     """
-    defaults = [
+    defaults = {
         # NOTE: Do not use a list as a default value, since it would be shared
         #       among all the objects inheriting this class, and if one of them
         #       modified it, all the other objects would see the modified list;
         #       use a string or a tuple instead, which are immutable
-        ("command", None, "the command to be launched (string or list with arguments)"),
-    ]
+        "command": (None, "the command to be launched (string or list with arguments)"),
+    }
 
     def __init__(self, **config):
         _Extension.__init__(self, **config)

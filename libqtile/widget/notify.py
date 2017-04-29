@@ -34,16 +34,15 @@ from os import path
 class Notify(base._TextBox):
     """A notify widget"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("foreground_urgent", "ff0000", "Foreground urgent priority colour"),
-        ("foreground_low", "dddddd", "Foreground low priority  colour"),
-        (
-            "default_timeout",
+    defaults = {
+        "foreground_urgent": ("ff0000", "Foreground urgent priority colour"),
+        "foreground_low": ("dddddd", "Foreground low priority  colour"),
+        "default_timeout": (
             None,
             "Default timeout (seconds) for notifications"
         ),
-        ("audiofile", None, "Audiofile played during notifications"),
-    ]
+        "audiofile": (None, "Audiofile played during notifications"),
+    }
 
     def __init__(self, width=bar.CALCULATED, **config):
         base._TextBox.__init__(self, "", width, **config)

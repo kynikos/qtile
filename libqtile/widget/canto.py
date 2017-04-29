@@ -30,12 +30,12 @@ from subprocess import call
 class Canto(base.ThreadedPollText):
     """Display RSS feeds updates using the canto console reader"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("fetch", False, "Whether to fetch new items on update"),
-        ("feeds", [], "List of feeds to display, empty for all"),
-        ("one_format", "{name}: {number}", "One feed display format"),
-        ("all_format", "{number}", "All feeds display format"),
-    ]
+    defaults = {
+        "fetch": (False, "Whether to fetch new items on update"),
+        "feeds": ([], "List of feeds to display, empty for all"),
+        "one_format": ("{name}: {number}", "One feed display format"),
+        "all_format": ("{number}", "All feeds display format"),
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)

@@ -36,11 +36,11 @@ class IdleRPG(GenPollUrl):
 
     orientations = base.ORIENTATION_HORIZONTAL
 
-    defaults = [
-        ('format', 'IdleRPG: {online} TTL: {ttl}', 'Display format'),
-        ('json', False, 'Not json :)'),
-        ('xml', True, 'Is XML :)'),
-    ]
+    defaults = {
+        'format': ('IdleRPG: {online} TTL: {ttl}', 'Display format'),
+        'json': (False, 'Not json :)'),
+        'xml': (True, 'Is XML :)'),
+    }
 
     def __init__(self, **config):
         GenPollUrl.__init__(self, **config)

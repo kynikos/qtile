@@ -26,10 +26,10 @@ from . import base
 class Net(base.ThreadedPollText):
     """Displays interface down and up speed"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('interface', 'wlan0', 'The interface to monitor'),
-        ('update_interval', 1, 'The update interval.'),
-    ]
+    defaults = {
+        'interface': ('wlan0', 'The interface to monitor'),
+        'update_interval': (1, 'The update interval.'),
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)

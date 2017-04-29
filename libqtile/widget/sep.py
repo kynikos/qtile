@@ -29,16 +29,15 @@ from . import base
 class Sep(base._Widget):
     """A visible widget separator"""
     orientations = base.ORIENTATION_BOTH
-    defaults = [
-        ("padding", 2, "Padding on either side of separator."),
-        ("linewidth", 1, "Width of separator line."),
-        ("foreground", "888888", "Separator line colour."),
-        (
-            "size_percent",
+    defaults = {
+        "padding": (2, "Padding on either side of separator."),
+        "linewidth": (1, "Width of separator line."),
+        "foreground": ("888888", "Separator line colour."),
+        "size_percent": (
             80,
             "Size as a percentage of bar size (0-100)."
         ),
-    ]
+    }
 
     def __init__(self, height_percent=None, **config):
         # 'height_percent' was replaced by 'size_percent' since the widget can

@@ -46,19 +46,18 @@ class Floating(Layout):
     """
     Floating layout, which does nothing with windows but handles focus order
     """
-    defaults = [
-        ("border_focus", "#0000ff", "Border colour for the focused window."),
-        ("border_normal", "#000000", "Border colour for un-focused windows."),
-        ("border_width", 1, "Border width."),
-        ("max_border_width", 0, "Border width for maximize."),
-        ("fullscreen_border_width", 0, "Border width for fullscreen."),
-        ("name", "floating", "Name of this layout."),
-        (
-            "auto_float_types",
+    defaults = {
+        "border_focus": ("#0000ff", "Border colour for the focused window."),
+        "border_normal": ("#000000", "Border colour for un-focused windows."),
+        "border_width": (1, "Border width."),
+        "max_border_width": (0, "Border width for maximize."),
+        "fullscreen_border_width": (0, "Border width for fullscreen."),
+        "name": ("floating", "Name of this layout."),
+        "auto_float_types": (
             DEFAULT_FLOAT_WM_TYPES,
             "default wm types to automatically float"
         ),
-    ]
+    }
 
     def __init__(self, float_rules=None, **config):
         """

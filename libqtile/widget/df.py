@@ -28,17 +28,17 @@ class DF(base.ThreadedPollText):
     By default the widget only displays if the space is less than warn_space.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('partition', '/', 'the partition to check space'),
-        ('warn_color', 'ff0000', 'Warning color'),
-        ('warn_space', 2, 'Warning space in scale defined by the ``measure`` option.'),
-        ('visible_on_warn', True, 'Only display if warning'),
-        ('measure', "G", "Measurement (G, M, B)"),
-        ('format', '{p} ({uf}{m})',
+    defaults = {
+        'partition': ('/', 'the partition to check space'),
+        'warn_color': ('ff0000', 'Warning color'),
+        'warn_space': (2, 'Warning space in scale defined by the ``measure`` option.'),
+        'visible_on_warn': (True, 'Only display if warning'),
+        'measure': ("G", "Measurement (G, M, B)"),
+        'format': ('{p} ({uf}{m})',
             'String format (p: partition, s: size, '
             'f: free space, uf: user free space, m: measure)'),
-        ('update_interval', 60, 'The update interval.'),
-    ]
+        'update_interval': (60, 'The update interval.'),
+    }
 
     measures = {"G": 1024 * 1024 * 1024,
                 "M": 1024 * 1024,

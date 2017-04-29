@@ -43,13 +43,13 @@ def tz(the_tz):
 class Clock(base.InLoopPollText):
     """A simple but flexible text-based clock"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('format', '%H:%M', 'A Python datetime format string'),
-        ('update_interval', 1., 'Update interval for the clock'),
-        ('timezone', None, 'The timezone to use for this clock, '
+    defaults = {
+        'format': ('%H:%M', 'A Python datetime format string'),
+        'update_interval': (1., 'Update interval for the clock'),
+        'timezone': (None, 'The timezone to use for this clock, '
             'e.g. "US/Central" (or anything in /usr/share/zoneinfo). None means '
             'the default timezone.')
-    ]
+    }
     DELTA = timedelta(seconds=0.5)
 
     def __init__(self, **config):

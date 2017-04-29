@@ -62,34 +62,29 @@ class _Battery(base._TextBox):
 
     filenames = {}
 
-    defaults = [
-        ('battery_name', 'BAT0', 'ACPI name of a battery, usually BAT0'),
-        (
-            'status_file',
+    defaults = {
+        'battery_name': ('BAT0', 'ACPI name of a battery, usually BAT0'),
+        'status_file': (
             'status',
-            'Name of status file in'
-            ' /sys/class/power_supply/battery_name'
+            'Name of status file in /sys/class/power_supply/battery_name'
         ),
-        (
-            'energy_now_file',
+        'energy_now_file': (
             None,
             'Name of file with the '
             'current energy in /sys/class/power_supply/battery_name'
         ),
-        (
-            'energy_full_file',
+        'energy_full_file': (
             None,
             'Name of file with the maximum'
             ' energy in /sys/class/power_supply/battery_name'
         ),
-        (
-            'power_now_file',
+        'power_now_file': (
             None,
             'Name of file with the current'
             ' power draw in /sys/class/power_supply/battery_name'
         ),
-        ('update_delay', 60, 'The delay in seconds between updates'),
-    ]
+        'update_delay': (60, 'The delay in seconds between updates'),
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, "BAT", bar.CALCULATED, **config)
@@ -149,24 +144,24 @@ class _Battery(base._TextBox):
 class Battery(_Battery):
     """A simple but flexible text-based battery widget"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('charge_char', '^', 'Character to indicate the battery is charging'),
-        ('discharge_char',
-         'V',
-         'Character to indicate the battery is discharging'
-         ),
-        ('error_message', 'Error', 'Error message if something is wrong'),
-        ('format',
-         '{char} {percent:2.0%} {hour:d}:{min:02d}',
-         'Display format'
-         ),
-        ('hide_threshold', None, 'Hide the text when there is enough energy'),
-        ('low_percentage',
-         0.10,
-         "Indicates when to use the low_foreground color 0 < x < 1"
-         ),
-        ('low_foreground', 'FF0000', 'Font color on low battery'),
-    ]
+    defaults = {
+        'charge_char': ('^', 'Character to indicate the battery is charging'),
+        'discharge_char': (
+            'V',
+            'Character to indicate the battery is discharging',
+        ),
+        'error_message': ('Error', 'Error message if something is wrong'),
+        'format': (
+            '{char} {percent:2.0%} {hour:d}:{min:02d}',
+            'Display format',
+        ),
+        'hide_threshold': (None, 'Hide the text when there is enough energy'),
+        'low_percentage': (
+            0.10,
+            "Indicates when to use the low_foreground color 0 < x < 1",
+        ),
+        'low_foreground': ('FF0000', 'Font color on low battery'),
+    }
 
     def __init__(self, **config):
         _Battery.__init__(self, **config)
@@ -251,10 +246,10 @@ class BatteryIcon(_Battery):
     """Battery life indicator widget."""
 
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('theme_path', default_icon_path(), 'Path of the icons'),
-        ('custom_icons', {}, 'dict containing key->filename icon map'),
-    ]
+    defaults = {
+        'theme_path': (default_icon_path(), 'Path of the icons'),
+        'custom_icons': ({}, 'dict containing key->filename icon map'),
+    }
 
     def __init__(self, **config):
         _Battery.__init__(self, **config)

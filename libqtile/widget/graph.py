@@ -51,19 +51,19 @@ __all__ = [
 
 class _Graph(base._Widget):
     fixed_upper_bound = False
-    defaults = [
-        ("graph_color", "18BAEB", "Graph color"),
-        ("fill_color", "1667EB.3", "Fill color for linefill graph"),
-        ("border_color", "215578", "Widget border color"),
-        ("border_width", 2, "Widget border width"),
-        ("margin_x", 3, "Margin X"),
-        ("margin_y", 3, "Margin Y"),
-        ("samples", 100, "Count of graph samples."),
-        ("frequency", 1, "Update frequency in seconds"),
-        ("type", "linefill", "'box', 'line', 'linefill'"),
-        ("line_width", 3, "Line width"),
-        ("start_pos", "bottom", "Drawer starting position ('bottom'/'top')"),
-    ]
+    defaults = {
+        "graph_color": ("18BAEB", "Graph color"),
+        "fill_color": ("1667EB.3", "Fill color for linefill graph"),
+        "border_color": ("215578", "Widget border color"),
+        "border_width": (2, "Widget border width"),
+        "margin_x": (3, "Margin X"),
+        "margin_y": (3, "Margin Y"),
+        "samples": (100, "Count of graph samples."),
+        "frequency": (1, "Update frequency in seconds"),
+        "type": ("linefill", "'box', 'line', 'linefill'"),
+        "line_width": (3, "Line width"),
+        "start_pos": ("bottom", "Drawer starting position ('bottom'/'top')"),
+    }
 
     def __init__(self, width=100, **config):
         base._Widget.__init__(self, width, **config)
@@ -187,9 +187,9 @@ class _Graph(base._Widget):
 class CPUGraph(_Graph):
     """Display CPU usage graph"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("core", "all", "Which core to show (all/0/1/2/...)"),
-    ]
+    defaults = {
+        "core": ("all", "Which core to show (all/0/1/2/...)"),
+    }
 
     fixed_upper_bound = True
 
@@ -312,14 +312,13 @@ class SwapGraph(_Graph):
 class NetGraph(_Graph):
     """Display a network usage graph"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        (
-            "interface",
+    defaults = {
+        "interface": (
             "auto",
             "Interface to display info for ('auto' for detection)"
         ),
-        ("bandwidth_type", "down", "down(load)/up(load)"),
-    ]
+        "bandwidth_type": ("down", "down(load)/up(load)"),
+    }
 
     def __init__(self, **config):
         _Graph.__init__(self, **config)
@@ -374,10 +373,10 @@ class HDDGraph(_Graph):
     """Display HDD free or used space graph"""
     fixed_upper_bound = True
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("path", "/", "Partition mount point."),
-        ("space_type", "used", "free/used")
-    ]
+    defaults = {
+        "path": ("/", "Partition mount point."),
+        "space_type": ("used", "free/used")
+    }
 
     def __init__(self, **config):
         _Graph.__init__(self, **config)
@@ -407,9 +406,9 @@ class HDDBusyGraph(_Graph):
     https://www.kernel.org/doc/Documentation/block/stat.txt
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("device", "sda", "Block device to display info for")
-    ]
+    defaults = {
+        "device": ("sda", "Block device to display info for")
+    }
 
     def __init__(self, **config):
         _Graph.__init__(self, **config)

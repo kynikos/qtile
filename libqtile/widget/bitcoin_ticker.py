@@ -49,16 +49,16 @@ class BitcoinTicker(GenPollUrl):
 
     orientations = base.ORIENTATION_HORIZONTAL
 
-    defaults = [
-        ('currency', locale.localeconv()['int_curr_symbol'].strip(),
+    defaults = {
+        'currency': (locale.localeconv()['int_curr_symbol'].strip(),
             'The currency the value that bitcoin is displayed in'),
-        ('source_currency', 'btc',
+        'source_currency': ('btc',
             'The source currency to convert from'),
-        ('round', True, 'whether or not to use locale.currency to round the values'),
-        ('format', 'BTC Buy: {buy}, Sell: {sell}',
+        'round': (True, 'whether or not to use locale.currency to round the values'),
+        'format': ('BTC Buy: {buy}, Sell: {sell}',
             'Display format, allows buy, sell, high, low, avg, '
             'vol, vol_cur, last, variables.'),
-    ]
+    }
 
     def __init__(self, **config):
         GenPollUrl.__init__(self, **config)

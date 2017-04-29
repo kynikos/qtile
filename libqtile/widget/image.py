@@ -31,10 +31,10 @@ from .. import bar
 class Image(base._Widget, base.MarginMixin):
     """Display a PNG image on the bar"""
     orientations = base.ORIENTATION_BOTH
-    defaults = [
-        ("scale", True, "Enable/Disable image scaling"),
-        ("filename", None, "PNG Image filename. Can contain '~'"),
-    ]
+    defaults = {
+        "scale": (True, "Enable/Disable image scaling"),
+        "filename": (None, "PNG Image filename. Can contain '~'"),
+    }
 
     def __init__(self, length=bar.CALCULATED, width=None, **config):
         # 'width' was replaced by 'length' since the widget can be installed in

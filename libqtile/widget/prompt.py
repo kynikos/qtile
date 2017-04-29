@@ -314,23 +314,23 @@ class Prompt(base._TextBox):
         None: NullCompleter
     }
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [("cursor", True, "Show a cursor"),
-                ("cursorblink", 0.5, "Cursor blink rate. 0 to disable."),
-                ("cursor_color", "bef098",
+    defaults = {"cursor": (True, "Show a cursor"),
+                "cursorblink": (0.5, "Cursor blink rate. 0 to disable."),
+                "cursor_color": ("bef098",
                  "Color for the cursor and text over it."),
-                ("prompt", "{prompt}: ", "Text displayed at the prompt"),
-                ("record_history", True, "Keep a record of executed commands"),
-                ("max_history", 100,
+                "prompt": ("{prompt}: ", "Text displayed at the prompt"),
+                "record_history": (True, "Keep a record of executed commands"),
+                "max_history": (100,
                  "Commands to keep in history. 0 for no limit."),
-                ("ignore_dups_history", False,
+                "ignore_dups_history": (False,
                  "Don't store duplicates in history"),
-                ("bell_style", "audible",
+                "bell_style": ("audible",
                  "Alert at the begin/end of the command history. " +
                  "Possible values: 'audible', 'visual' and None."),
-                ("visual_bell_color", "ff0000",
+                "visual_bell_color": ("ff0000",
                  "Color for the visual bell (changes prompt background)."),
-                ("visual_bell_time", 0.2,
-                 "Visual bell duration (in seconds).")]
+                "visual_bell_time": (0.2,
+                 "Visual bell duration (in seconds).")}
 
     def __init__(self, name="prompt", **config):
         base._TextBox.__init__(self, "", bar.CALCULATED, **config)

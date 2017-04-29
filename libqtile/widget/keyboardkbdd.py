@@ -33,16 +33,16 @@ class KeyboardKbdd(base.ThreadedPollText):
     https://github.com/qnikst/kbdd
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("update_interval", 1, "Update interval in seconds."),
-        ("configured_keyboards", ["us", "ir"],
+    defaults = {
+        "update_interval": (1, "Update interval in seconds."),
+        "configured_keyboards": (["us", "ir"],
          "your predefined list of keyboard layouts."
          "example: ['us', 'ir', 'es']"),
-        ("colours", None,
+        "colours": (None,
          "foreground colour for each layout"
          "either 'None' or a list of colours."
          "example: ['ffffff', 'E6F0AF']. ")
-    ]
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)

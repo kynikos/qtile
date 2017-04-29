@@ -56,20 +56,20 @@ class Volume(base._TextBox):
     If theme_path is set it draw widget as icons.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("cardid", None, "Card Id"),
-        ("device", "default", "Device Name"),
-        ("channel", "Master", "Channel"),
-        ("padding", 3, "Padding left and right. Calculated if None."),
-        ("theme_path", None, "Path of the icons"),
-        ("update_interval", 0.2, "Update time in seconds."),
-        ("emoji", False, "Use emoji to display volume states, only if ``theme_path`` is not set."
+    defaults = {
+        "cardid": (None, "Card Id"),
+        "device": ("default", "Device Name"),
+        "channel": ("Master", "Channel"),
+        "padding": (3, "Padding left and right. Calculated if None."),
+        "theme_path": (None, "Path of the icons"),
+        "update_interval": (0.2, "Update time in seconds."),
+        "emoji": (False, "Use emoji to display volume states, only if ``theme_path`` is not set."
                          "The specified font needs to contain the correct unicode characters."),
-        ("mute_command", None, "Mute command"),
-        ("volume_up_command", None, "Volume up command"),
-        ("volume_down_command", None, "Volume down command"),
-        ("get_volume_command", None, "Command to get the current volume"),
-    ]
+        "mute_command": (None, "Mute command"),
+        "volume_up_command": (None, "Volume up command"),
+        "volume_down_command": (None, "Volume down command"),
+        "get_volume_command": (None, "Command to get the current volume"),
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, '0', width=bar.CALCULATED, **config)

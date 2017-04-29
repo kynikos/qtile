@@ -35,27 +35,26 @@ class Mpris2(base._TextBox):
     is displayed is configurable.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('name', 'audacious', 'Name of the MPRIS widget.'),
+    defaults = {
+        'name': ('audacious', 'Name of the MPRIS widget.'),
 
-        ('objname', 'org.mpris.MediaPlayer2.audacious',
+        'objname': ('org.mpris.MediaPlayer2.audacious',
             'DBUS MPRIS 2 compatible player identifier'
             '- Find it out with dbus-monitor - '
             'Also see: http://specifications.freedesktop.org/'
             'mpris-spec/latest/#Bus-Name-Policy'),
 
-        ('display_metadata', ['xesam:title', 'xesam:album', 'xesam:artist'],
+        'display_metadata': (['xesam:title', 'xesam:album', 'xesam:artist'],
             'Which metadata identifiers to display. '
             'See http://www.freedesktop.org/wiki/Specifications/mpris-spec/metadata/#index5h3 '
             'for available values'),
 
-        ('scroll_chars', 30, 'How many chars at once to display.'),
-        ('scroll_interval', 0.5, 'Scroll delay interval.'),
-        ('scroll_wait_intervals', 8, 'Wait x scroll_interval before'
+        'scroll_chars': (30, 'How many chars at once to display.'),
+        'scroll_interval': (0.5, 'Scroll delay interval.'),
+        'scroll_wait_intervals': (8, 'Wait x scroll_interval before'
             'scrolling/removing text'),
-
-        ('stop_pause_text', None, "Optional text to display when in the stopped/paused state"),
-    ]
+        'stop_pause_text': (None, "Optional text to display when in the stopped/paused state"),
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, '', **config)

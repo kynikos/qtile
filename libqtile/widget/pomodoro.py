@@ -26,24 +26,24 @@ from . import base
 class Pomodoro(base.ThreadPoolText):
     """Pomodoro technique widget"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('fmt', '%s', 'fmt'),
-        ('num_pomodori', 4, "Number of pomodori to do in a cycle"),
-        ('length_pomodori', 25, "Length of one pomodori in minutes"),
-        ('length_short_break', 5, "Length of a short break in minutes"),
-        ('length_long_break', 15, "Length of a long break in minutes"),
-        ('color_inactive', "ff0000", "Colour then pomodoro is inactive"),
-        ('color_active', "00ff00", "Colour then pomodoro is running"),
-        ('color_break', "ffff00", "Colour then it is break time"),
-        ('notification_on', True, "Turn notifications on"),
-        ('prefix_inactive', 'POMODORO', "Prefix when app is inactive"),
-        ('prefix_active', '', "Prefix then app is active"),
-        ('prefix_break', 'B ', "Prefix during short break"),
-        ('prefix_long_break', 'LB ', "Prefix during long break"),
-        ('prefix_paused', 'PAUSE', "Prefix during pause"),
-        ("update_interval", 1, "Update interval in seconds, if none, the "
+    defaults = {
+        'fmt': ('%s', 'fmt'),
+        'num_pomodori': (4, "Number of pomodori to do in a cycle"),
+        'length_pomodori': (25, "Length of one pomodori in minutes"),
+        'length_short_break': (5, "Length of a short break in minutes"),
+        'length_long_break': (15, "Length of a long break in minutes"),
+        'color_inactive': ("ff0000", "Colour then pomodoro is inactive"),
+        'color_active': ("00ff00", "Colour then pomodoro is running"),
+        'color_break': ("ffff00", "Colour then it is break time"),
+        'notification_on': (True, "Turn notifications on"),
+        'prefix_inactive': ('POMODORO', "Prefix when app is inactive"),
+        'prefix_active': ('', "Prefix then app is active"),
+        'prefix_break': ('B ', "Prefix during short break"),
+        'prefix_long_break': ('LB ', "Prefix during long break"),
+        'prefix_paused': ('PAUSE', "Prefix during pause"),
+        "update_interval": (1, "Update interval in seconds, if none, the "
             "widget updates whenever the event loop is idle."),
-    ]
+    }
 
     STATUS_START = "start"
     STATUS_INACTIVE = "inactive"

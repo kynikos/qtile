@@ -99,17 +99,17 @@ class Columns(Layout):
         Key([mod], "Return", lazy.layout.toggle_split()),
         Key([mod], "n", lazy.layout.normalize()),
     """
-    defaults = [
-        ("name", "columns", "Name of this layout."),
-        ("border_focus", "#881111", "Border colour for the focused window."),
-        ("border_normal", "#220000", "Border colour for un-focused windows."),
-        ("border_width", 2, "Border width."),
-        ("margin", 0, "Margin of the layout."),
-        ("autosplit", True, "Autosplit newly created columns."),
-        ("num_columns", 2, "Preferred number of columns."),
-        ("grow_amount", 10, "Amount by which to grow a window/column."),
-        ("fair", False, "Add new windows to the column with least windows."),
-    ]
+    defaults = {
+        "name": ("columns", "Name of this layout."),
+        "border_focus": ("#881111", "Border colour for the focused window."),
+        "border_normal": ("#220000", "Border colour for un-focused windows."),
+        "border_width": (2, "Border width."),
+        "margin": (0, "Margin of the layout."),
+        "autosplit": (True, "Autosplit newly created columns."),
+        "num_columns": (2, "Preferred number of columns."),
+        "grow_amount": (10, "Amount by which to grow a window/column."),
+        "fair": (False, "Add new windows to the column with least windows."),
+    }
 
     def __init__(self, **config):
         Layout.__init__(self, **config)

@@ -52,24 +52,24 @@ from libqtile.log_utils import logger
 class Mpd(base.ThreadPoolText):
     """A widget for the Music Player Daemon (MPD)"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("host", "localhost", "Host to connect to, can be either an IP "
+    defaults = {
+        "host": ("localhost", "Host to connect to, can be either an IP "
                               "address or a UNIX socket path"),
-        ("port", 6600, "Port to connect to"),
-        ("password", None, "Password to use"),
-        ("fmt_playing", "%a - %t [%v%%]", "Format string to display when "
+        "port": (6600, "Port to connect to"),
+        "password": (None, "Password to use"),
+        "fmt_playing": ("%a - %t [%v%%]", "Format string to display when "
                                           "playing/paused"),
-        ("fmt_stopped", "Stopped [%v%%]", "Format strings to display when "
+        "fmt_stopped": ("Stopped [%v%%]", "Format strings to display when "
                                           "stopped"),
-        ("msg_nc", "Mpd off", "Which message to show when we're not "
+        "msg_nc": ("Mpd off", "Which message to show when we're not "
                               "connected"),
-        ("do_color_progress", True, "Whether to indicate progress in song by "
+        "do_color_progress": (True, "Whether to indicate progress in song by "
                                     "altering message color"),
-        ("foreground_progress", "ffffff", "Foreground progress colour"),
-        ("reconnect", False, "Attempt to reconnect if initial connection failed"),
-        ("reconnect_interval", 1, "Time to delay between connection attempts."),
-        ("update_interval", 0.5, "Update Time in seconds.")
-    ]
+        "foreground_progress": ("ffffff", "Foreground progress colour"),
+        "reconnect": (False, "Attempt to reconnect if initial connection failed"),
+        "reconnect_interval": (1, "Time to delay between connection attempts."),
+        "update_interval": (0.5, "Update Time in seconds.")
+    }
 
     def __init__(self, **config):
         super(Mpd, self).__init__('MPD Widget', **config)

@@ -30,14 +30,14 @@ from libqtile.log_utils import logger
 
 class Wallpaper(base._TextBox):
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("directory", "~/Pictures/wallpapers/", "Wallpaper Directory"),
-        ("wallpaper", None, "Wallpaper"),
-        ("wallpaper_command", None, "Wallpaper command"),
-        ("random_selection", False, "If set, use random initial wallpaper and "
+    defaults = {
+        "directory": ("~/Pictures/wallpapers/", "Wallpaper Directory"),
+        "wallpaper": (None, "Wallpaper"),
+        "wallpaper_command": (None, "Wallpaper command"),
+        "random_selection": (False, "If set, use random initial wallpaper and "
          "randomly cycle through the wallpapers."),
-        ("label", None, "Use a fixed label instead of image name.")
-    ]
+        "label": (None, "Use a fixed label instead of image name.")
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, 'empty', width=bar.CALCULATED, **config)

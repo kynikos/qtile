@@ -35,13 +35,13 @@ from .base import _SimpleLayoutBase
 
 
 class Tile(_SimpleLayoutBase):
-    defaults = [
-        ("border_focus", "#0000ff", "Border colour for the focused window."),
-        ("border_normal", "#000000", "Border colour for un-focused windows."),
-        ("border_width", 1, "Border width."),
-        ("name", "tile", "Name of this layout."),
-        ("margin", 0, "Margin of the layout"),
-    ]
+    defaults = {
+        "border_focus": ("#0000ff", "Border colour for the focused window."),
+        "border_normal": ("#000000", "Border colour for un-focused windows."),
+        "border_width": (1, "Border width."),
+        "name": ("tile", "Name of this layout."),
+        "margin": (0, "Margin of the layout"),
+    }
 
     def __init__(self, ratio=0.618, masterWindows=1, expand=True,
                  ratio_increment=0.05, add_on_top=True, shift_windows=False,

@@ -33,10 +33,10 @@ class WindowTabs(base._TextBox):
         The window that currently has focus is highlighted.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("separator", " | ", "Task separator text."),
-        ("selected", ("<", ">"), "Selected task indicator"),
-    ]
+    defaults = {
+        "separator": (" | ", "Task separator text."),
+        "selected": (("<", ">"), "Selected task indicator"),
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, width=bar.STRETCH, **config)

@@ -26,14 +26,14 @@ from subprocess import CalledProcessError, Popen
 class CheckUpdates(base.ThreadedPollText):
     """Shows number of pending updates in different unix systems"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("distro", "Arch", "Name of your distribution"),
-        ("update_interval", 60, "Update interval in seconds."),
-        ('execute', None, 'Command to execute on click'),
-        ("display_format", "Updates: {updates}", "Display format if updates available"),
-        ("colour_no_updates", "ffffff", "Colour when there's no updates."),
-        ("colour_have_updates", "ffffff", "Colour when there are updates.")
-    ]
+    defaults = {
+        "distro": ("Arch", "Name of your distribution"),
+        "update_interval": (60, "Update interval in seconds."),
+        'execute': (None, 'Command to execute on click'),
+        "display_format": ("Updates: {updates}", "Display format if updates available"),
+        "colour_no_updates": ("ffffff", "Colour when there's no updates."),
+        "colour_have_updates": ("ffffff", "Colour when there are updates.")
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)

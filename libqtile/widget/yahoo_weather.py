@@ -62,28 +62,25 @@ class YahooWeather(GenPollUrl):
         - wind_chill
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
+    defaults = {
         # One of (location, woeid) must be set.
-        (
-            'location',
+        'location': (
             None,
             'Location to fetch weather for. Ignored if woeid is set.'
         ),
-        (
-            'woeid',
+        'woeid': (
             None,
             'Where On Earth ID. Auto-calculated if location is set.'
         ),
-        (
-            'format',
+        'format': (
             '{location_city}: {condition_temp} °{units_temperature}',
             'Display format'
         ),
-        ('metric', True, 'True to use metric/C, False to use imperial/F'),
-        ('up', '^', 'symbol for rising atmospheric pressure'),
-        ('down', 'v', 'symbol for falling atmospheric pressure'),
-        ('steady', 's', 'symbol for steady atmospheric pressure'),
-    ]
+        'metric': (True, 'True to use metric/C, False to use imperial/F'),
+        'up': ('^', 'symbol for rising atmospheric pressure'),
+        'down': ('v', 'symbol for falling atmospheric pressure'),
+        'steady': ('s', 'symbol for steady atmospheric pressure'),
+    }
 
     json = False
 

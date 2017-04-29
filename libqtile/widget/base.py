@@ -92,7 +92,7 @@ class _Widget(command.CommandObject, configurable.Configurable):
     orientations = ORIENTATION_BOTH
     offsetx = None
     offsety = None
-    defaults = [("background", None, "Widget background color")]
+    defaults = {"background": (None, "Widget background color")}
 
     def __init__(self, length, **config):
         """
@@ -279,18 +279,17 @@ class _TextBox(_Widget):
         Base class for widgets that are just boxes containing text.
     """
     orientations = ORIENTATION_HORIZONTAL
-    defaults = [
-        ("font", "sans", "Default font"),
-        ("fontsize", None, "Font size. Calculated if None."),
-        ("padding", None, "Padding. Calculated if None."),
-        ("foreground", "ffffff", "Foreground colour"),
-        (
-            "fontshadow",
+    defaults = {
+        "font": ("sans", "Default font"),
+        "fontsize": (None, "Font size. Calculated if None."),
+        "padding": (None, "Padding. Calculated if None."),
+        "foreground": ("ffffff", "Foreground colour"),
+        "fontshadow": (
             None,
             "font shadow color, default is None(no shadow)"
         ),
-        ("markup", False, "Whether or not to use pango markup"),
-    ]
+        "markup": (False, "Whether or not to use pango markup"),
+    }
 
     def __init__(self, text=" ", width=bar.CALCULATED, **config):
         self.layout = None
@@ -408,10 +407,10 @@ class InLoopPollText(_TextBox):
     ('fast' here means that this runs /in/ the event loop, so don't block! If
     you want to run something nontrivial, use ThreadedPollWidget.) """
 
-    defaults = [
-        ("update_interval", 600, "Update interval in seconds, if none, the "
+    defaults = {
+        "update_interval": (600, "Update interval in seconds, if none, the "
             "widget updates whenever the event loop is idle."),
-    ]
+    }
 
     def __init__(self, **config):
         _TextBox.__init__(self, 'N/A', width=bar.CALCULATED, **config)
@@ -489,10 +488,10 @@ class ThreadPoolText(_TextBox):
 
     param: text - Initial text to display.
     """
-    defaults = [
-        ("update_interval", None, "Update interval in seconds, if none, the "
+    defaults = {
+        "update_interval": (None, "Update interval in seconds, if none, the "
             "widget updates whenever it's done'."),
-    ]
+    }
 
     def __init__(self, text, **config):
         super(ThreadPoolText, self).__init__(text, width=bar.CALCULATED,
@@ -550,11 +549,11 @@ class PaddingMixin(object):
         self.add_defaults(base.PaddingMixin.defaults)
     """
 
-    defaults = [
-        ("padding", 3, "Padding inside the box"),
-        ("padding_x", None, "X Padding. Overrides 'padding' if set"),
-        ("padding_y", None, "Y Padding. Overrides 'padding' if set"),
-    ]
+    defaults = {
+        "padding": (3, "Padding inside the box"),
+        "padding_x": (None, "X Padding. Overrides 'padding' if set"),
+        "padding_y": (None, "Y Padding. Overrides 'padding' if set"),
+    }
 
     padding_x = configurable.ExtraFallback('padding_x', 'padding')
     padding_y = configurable.ExtraFallback('padding_y', 'padding')
@@ -568,11 +567,11 @@ class MarginMixin(object):
         self.add_defaults(base.MarginMixin.defaults)
     """
 
-    defaults = [
-        ("margin", 3, "Margin inside the box"),
-        ("margin_x", None, "X Margin. Overrides 'margin' if set"),
-        ("margin_y", None, "Y Margin. Overrides 'margin' if set"),
-    ]
+    defaults = {
+        "margin": (3, "Margin inside the box"),
+        "margin_x": (None, "X Margin. Overrides 'margin' if set"),
+        "margin_y": (None, "Y Margin. Overrides 'margin' if set"),
+    }
 
     margin_x = configurable.ExtraFallback('margin_x', 'margin')
     margin_y = configurable.ExtraFallback('margin_y', 'margin')

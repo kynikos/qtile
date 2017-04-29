@@ -34,12 +34,12 @@ import mailbox
 class Maildir(base.ThreadedPollText):
     """A simple widget showing the number of new mails in maildir mailboxes"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("maildirPath", "~/Mail", "path to the Maildir folder"),
-        ("subFolders", [], 'The subfolders to scan (e.g. [{"path": "INBOX", '
+    defaults = {
+        "maildirPath": ("~/Mail", "path to the Maildir folder"),
+        "subFolders": ([], 'The subfolders to scan (e.g. [{"path": "INBOX", '
             '"label": "Home mail"}, {"path": "spam", "label": "Home junk"}]'),
-        ("separator", " ", "the string to put between the subfolder strings."),
-    ]
+        "separator": (" ", "the string to put between the subfolder strings."),
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)

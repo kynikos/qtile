@@ -54,16 +54,15 @@ class KhalCalendar(base.ThreadedPollText):
     highlighted.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        (
-            'reminder_color',
+    defaults = {
+        'reminder_color': (
             'FF0000',
             'color of calendar entries during reminder time'
         ),
-        ('foreground', 'FFFF33', 'default foreground color'),
-        ('remindertime', 10, 'reminder time in minutes'),
-        ('lookahead', 7, 'days to look ahead in the calendar'),
-    ]
+        'foreground': ('FFFF33', 'default foreground color'),
+        'remindertime': (10, 'reminder time in minutes'),
+        'lookahead': (7, 'days to look ahead in the calendar'),
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)

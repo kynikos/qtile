@@ -37,69 +37,60 @@ class TaskList(base._Widget, base.PaddingMixin, base.MarginMixin):
     currently has focus is highlighted.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("font", "sans", "Default font"),
-        ("fontsize", None, "Font size. Calculated if None."),
-        ("foreground", "ffffff", "Foreground colour"),
-        (
-            "fontshadow",
+    defaults = {
+        "font": ("sans", "Default font"),
+        "fontsize": (None, "Font size. Calculated if None."),
+        "foreground": ("ffffff", "Foreground colour"),
+        "fontshadow": (
             None,
             "font shadow color, default is None(no shadow)"
         ),
-        ("borderwidth", 2, "Current group border width"),
-        ("border", "215578", "Border colour"),
-        ("rounded", True, "To round or not to round borders"),
-        (
-            "highlight_method",
+        "borderwidth": (2, "Current group border width"),
+        "border": ("215578", "Border colour"),
+        "rounded": (True, "To round or not to round borders"),
+        "highlight_method": (
             "border",
             "Method of highlighting (one of 'border' or 'block') "
             "Uses \*_border color settings"
         ),
-        ("urgent_border", "FF0000", "Urgent border color"),
-        (
-            "urgent_alert_method",
+        "urgent_border": ("FF0000", "Urgent border color"),
+        "urgent_alert_method": (
             "border",
             "Method for alerting you of WM urgent "
             "hints (one of 'border' or 'text')"
         ),
-        (
-            "unfocused_border",
+        "unfocused_border": (
             None,
             "Border color for unfocused windows. "
             "Affects only hightlight_method 'border' and 'block'. "
             "Defaults to None, which means no special color."
         ),
-        (
-            "max_title_width",
+        "max_title_width": (
             None,
             "Max size in pixels of task title."
             "(if set to None, as much as available.)"
         ),
-        (
-            "spacing",
+        "spacing": (
             None,
             "Spacing between tasks."
             "(if set to None, will be equal to margin_x)"
         ),
-        (
-            'txt_minimized',
+        'txt_minimized': (
             '_ ',
             'Text representation of the minimized window state. '
             'e.g., "_ " or "\U0001F5D5 "'
         ),
-        (
-            'txt_maximized',
+        'txt_maximized': (
             '[] ',
             'Text representation of the maximized window state. '
             'e.g., "[] " or "\U0001F5D6 "'
         ),
-        (
-            'txt_floating',
+        'txt_floating': (
             'V ',
             'Text representation of the floating window state. '
             'e.g., "V " or "\U0001F5D7 "'
         ),
-    ]
+    }
 
     def __init__(self, **config):
         base._Widget.__init__(self, bar.STRETCH, **config)

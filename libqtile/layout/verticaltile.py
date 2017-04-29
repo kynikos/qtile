@@ -85,13 +85,13 @@ class VerticalTile(_SimpleLayoutBase):
         Key([modkey], 'n', lazy.layout.normalize()),
     """
 
-    defaults = [
-        ('border_focus', '#FF0000', 'Border color for the focused window.'),
-        ('border_normal', '#FFFFFF', 'Border color for un-focused windows.'),
-        ('border_width', 1, 'Border width.'),
-        ('margin', 0, 'Border margin.'),
-        ('name', 'verticaltile', 'Name of this layout.'),
-    ]
+    defaults = {
+        'border_focus': ('#FF0000', 'Border color for the focused window.'),
+        'border_normal': ('#FFFFFF', 'Border color for un-focused windows.'),
+        'border_width': (1, 'Border width.'),
+        'margin': (0, 'Border margin.'),
+        'name': ('verticaltile', 'Name of this layout.'),
+    }
 
     ratio = 0.75
     steps = 0.05

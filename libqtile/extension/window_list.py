@@ -24,9 +24,9 @@ class WindowList(Dmenu):
     Give vertical list of all open windows in dmenu. Switch to selected.
     """
 
-    defaults = [
-        ("item_format", "{group}.{id}: {window}", "the format for the menu items"),
-    ]
+    defaults = {
+        "item_format": ("{group}.{id}: {window}", "the format for the menu items"),
+    }
 
     def __init__(self, **config):
         Dmenu.__init__(self, **config)

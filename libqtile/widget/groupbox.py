@@ -37,10 +37,10 @@ from . import base
 
 
 class _GroupBase(base._TextBox, base.PaddingMixin, base.MarginMixin):
-    defaults = [
-        ("borderwidth", 3, "Current group border width"),
-        ("center_aligned", False, "center-aligned group box"),
-    ]
+    defaults = {
+        "borderwidth": (3, "Current group border width"),
+        "center_aligned": (False, "center-aligned group box"),
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, width=bar.CALCULATED, **config)
@@ -123,7 +123,7 @@ class _GroupBase(base._TextBox, base.PaddingMixin, base.MarginMixin):
 class AGroupBox(_GroupBase):
     """A widget that graphically displays the current group"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [("border", "000000", "group box border color")]
+    defaults = {"border": ("000000", "group box border color")}
 
     def __init__(self, **config):
         _GroupBase.__init__(self, **config)
@@ -148,68 +148,58 @@ class AGroupBox(_GroupBase):
 class GroupBox(_GroupBase):
     """A widget that graphically displays the current group"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("active", "FFFFFF", "Active group font colour"),
-        ("inactive", "404040", "Inactive group font colour"),
-        (
-            "highlight_method",
+    defaults = {
+        "active": ("FFFFFF", "Active group font colour"),
+        "inactive": ("404040", "Inactive group font colour"),
+        "highlight_method": (
             "border",
             "Method of highlighting ('border', 'block', 'text', or 'line')"
             "Uses \*_border color settings"
         ),
-        ("rounded", True, "To round or not to round box borders"),
-        (
-            "this_current_screen_border",
+        "rounded": (True, "To round or not to round box borders"),
+        "this_current_screen_border": (
             "215578",
             "Border or line colour for group on this screen when focused."
         ),
-        (
-            "this_screen_border",
+        "this_screen_border": (
             "215578",
             "Border or line colour for group on this screen when unfocused."
         ),
-        (
-            "other_current_screen_border",
+        "other_current_screen_border": (
             "404040",
             "Border or line colour for group on other screen when focused."
         ),
-        (
-            "other_screen_border",
+        "other_screen_border": (
             "404040",
             "Border or line colour for group on other screen when unfocused."
         ),
-        (
-            "highlight_color",
+        "highlight_color": (
             ["000000", "282828"],
             "Active group highlight color when using 'line' highlight method."
         ),
-        (
-            "urgent_alert_method",
+        "urgent_alert_method": (
             "border",
             "Method for alerting you of WM urgent "
             "hints (one of 'border', 'text', 'block', or 'line')"
         ),
-        ("urgent_text", "FF0000", "Urgent group font color"),
-        ("urgent_border", "FF0000", "Urgent border or line color"),
-        (
-            "disable_drag",
+        "urgent_text": ("FF0000", "Urgent group font color"),
+        "urgent_border": ("FF0000", "Urgent border or line color"),
+        "disable_drag": (
             False,
             "Disable dragging and dropping of group names on widget"
         ),
-        ("invert_mouse_wheel", False, "Whether to invert mouse wheel group movement"),
-        ("use_mouse_wheel", True, "Whether to use mouse wheel events"),
-        (
-            "visible_groups",
+        "invert_mouse_wheel": (False, "Whether to invert mouse wheel group movement"),
+        "use_mouse_wheel": (True, "Whether to use mouse wheel events"),
+        "visible_groups": (
             None,
             "Groups that will be visible "
             "(if set to None or [], all groups will be visible)"
         ),
-        (
-            "spacing",
+        "spacing": (
             None,
             "Spacing between groups"
             "(if set to None, will be equal to margin_x)")
-    ]
+    }
 
     def __init__(self, **config):
         _GroupBase.__init__(self, **config)

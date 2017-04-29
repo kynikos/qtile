@@ -42,20 +42,19 @@ class ThermalSensor(base.InLoopPollText):
     available.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('metric', True, 'True to use metric/C, False to use imperial/F'),
-        ('show_tag', False, 'Show tag sensor'),
-        ('update_interval', 2, 'Update interval in seconds'),
-        ('tag_sensor', None,
+    defaults = {
+        'metric': (True, 'True to use metric/C, False to use imperial/F'),
+        'show_tag': (False, 'Show tag sensor'),
+        'update_interval': (2, 'Update interval in seconds'),
+        'tag_sensor': (None,
             'Tag of the temperature sensor. For example: "temp1" or "Core 0"'),
-        (
-            'threshold',
+        'threshold': (
             70,
             'If the current temperature value is above, '
             'then change to foreground_alert colour'
         ),
-        ('foreground_alert', 'ff0000', 'Foreground colour alert'),
-    ]
+        'foreground_alert': ('ff0000', 'Foreground colour alert'),
+    }
 
     def __init__(self, **config):
         base.InLoopPollText.__init__(self, **config)

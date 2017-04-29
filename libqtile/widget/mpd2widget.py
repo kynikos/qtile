@@ -77,19 +77,19 @@ class Mpd2(base.ThreadPoolText):
     """
 
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('update_interval', 1, 'Interval of update widget'),
-        ('host', 'localhost', 'Host of mpd server'),
-        ('port', 6600, 'Port of mpd server'),
-        ('password', None, 'Password for auth on mpd server'),
-        ('keys', keys, 'Shortcut keys'),
-        ('play_states', play_states, 'Play state mapping'),
-        ('command', None, 'Executable command by "command" shortcut'),
-        ('timeout', 30, 'MPDClient timeout'),
-        ('idletimeout', 5, 'MPDClient idle command timeout'),
-        ('no_connection', 'No connection', 'Text when mpd is disconnected'),
-        ('space', '-', 'Space keeper')
-    ]
+    defaults = {
+        'update_interval': (1, 'Interval of update widget'),
+        'host': ('localhost', 'Host of mpd server'),
+        'port': (6600, 'Port of mpd server'),
+        'password': (None, 'Password for auth on mpd server'),
+        'keys': (keys, 'Shortcut keys'),
+        'play_states': (play_states, 'Play state mapping'),
+        'command': (None, 'Executable command by "command" shortcut'),
+        'timeout': (30, 'MPDClient timeout'),
+        'idletimeout': (5, 'MPDClient idle command timeout'),
+        'no_connection': ('No connection', 'Text when mpd is disconnected'),
+        'space': ('-', 'Space keeper')
+    }
 
     def __init__(self, status_format=default_format,
                 prepare_status=prepare_status, **config):

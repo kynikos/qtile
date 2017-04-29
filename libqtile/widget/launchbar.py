@@ -65,11 +65,11 @@ class LaunchBar(base._Widget):
             ('logout', 'qshell:self.qtile.cmd_shutdown()', 'logout from qtile')
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('padding', 2, 'Padding between icons'),
-        ('default_icon', '/usr/share/icons/oxygen/256x256/mimetypes/'
+    defaults = {
+        'padding': (2, 'Padding between icons'),
+        'default_icon': ('/usr/share/icons/oxygen/256x256/mimetypes/'
          'application-x-executable.png', 'Default icon not found'),
-    ]
+    }
 
     def __init__(self, progs=None, width=bar.CALCULATED, **config):
         base._Widget.__init__(self, width, **config)

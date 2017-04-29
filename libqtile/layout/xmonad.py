@@ -141,31 +141,31 @@ class MonadTall(_SimpleLayoutBase):
     _left = 0
     _right = 1
 
-    defaults = [
-        ("border_focus", "#ff0000", "Border colour for the focused window."),
-        ("border_normal", "#000000", "Border colour for un-focused windows."),
-        ("border_width", 2, "Border width."),
-        ("single_border_width", None, "Border width for single window"),
-        ("name", "xmonadtall", "Name of this layout."),
-        ("margin", 0, "Margin of the layout"),
-        ("ratio", .5,
-            "The percent of the screen-space the master pane should occupy "
-            "by default."),
-        ("min_ratio", .25,
+    defaults = {
+        "border_focus": ("#ff0000", "Border colour for the focused window."),
+        "border_normal": ("#000000", "Border colour for un-focused winows."),
+        "border_width": (2, "Border width."),
+        "single_border_width": (None, "Border width for single window"),
+        "name": ("xmonadtall", "Name of this layout."),
+        "margin": (0, "Margin of the layout"),
+        "ratio": (.5,
+           "The percent of the screen-space the master pane should occupy "
+           "by default."),
+        "min_ratio": (.25,
             "The percent of the screen-space the master pane should occupy "
             "at minimum."),
-        ("max_ratio", .75,
+        "max_ratio": (.75,
             "The percent of the screen-space the master pane should occupy "
             "at maximum."),
-        ("min_secondary_size", 85,
+        "min_secondary_size": (85,
             "minimum size in pixel for a secondary pane window "),
-        ("align", _left, "Which side master plane will be placed "
+        "align": (_left, "Which side master plane will be placed "
             "(one of ``MonadTall._left`` or ``MonadTall._right``)"),
-        ("change_ratio", .05, "Resize ratio"),
-        ("change_size", 20, "Resize change in pixels"),
-        ("new_at_current", False,
+        "change_ratio": (.05, "Resize ratio"),
+        "change_size": (20, "Resize change in pixels"),
+        "new_at_current": (False,
             "Place new windows at the position of the active window."),
-    ]
+    }
 
     def __init__(self, **config):
         _SimpleLayoutBase.__init__(self, **config)

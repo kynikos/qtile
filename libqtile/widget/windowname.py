@@ -31,10 +31,10 @@ from . import base
 class WindowName(base._TextBox):
     """Displays the name of the window that currently has focus"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('show_state', True, 'show window status before window name'),
-        ('for_current_screen', False, 'instead of this bars screen use currently active screen')
-    ]
+    defaults = {
+        'show_state': (True, 'show window status before window name'),
+        'for_current_screen': (False, 'instead of this bars screen use currently active screen')
+    }
 
     def __init__(self, width=bar.STRETCH, **config):
         base._TextBox.__init__(self, width=width, **config)

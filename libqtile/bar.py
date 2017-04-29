@@ -151,10 +151,10 @@ class Bar(Gap, configurable.Configurable):
         The "thickness" of the bar, i.e. the height of a horizontal bar, or the
         width of a vertical bar.
     """
-    defaults = [
-        ("background", "#000000", "Background colour."),
-        ("opacity", 1, "Bar window opacity."),
-    ]
+    defaults = {
+        "background": ("#000000", "Background colour."),
+        "opacity": (1, "Bar window opacity."),
+    }
 
     def __init__(self, widgets, size, **config):
         Gap.__init__(self, size)

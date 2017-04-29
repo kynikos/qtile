@@ -32,7 +32,8 @@ class Configurable(object):
         #       of this class could modify it also for all the other instances;
         #       if d[1] is a mutable object, perhaps fail or create a (shallow)
         #       copy, e.g. list(d[1]) in case of lists
-        self._variable_defaults.update(dict((d[0], d[1]) for d in defaults))
+        for key in defaults:
+            self._variable_defaults[key] = defaults[key][0]
 
     def __getattr__(self, name):
         if name == "_variable_defaults":

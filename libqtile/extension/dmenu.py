@@ -29,19 +29,19 @@ class Dmenu(base.RunCommand):
     http://tools.suckless.org/dmenu/
     """
 
-    defaults = [
-        ("dmenu_font", None, "override the default 'font' and 'fontsize' options for dmenu"),
+    defaults = {
+        "dmenu_font": (None, "override the default 'font' and 'fontsize' options for dmenu"),
         # NOTE: Do not use a list as a default value, since it would be shared
         #       among all the objects inheriting this class, and if one of them
         #       modified it, all the other objects would see the modified list;
         #       use a string or a tuple instead, which are immutable
-        ("dmenu_command", 'dmenu', "the dmenu command to be launched"),
-        ("dmenu_bottom", False, "dmenu appears at the bottom of the screen"),
-        ("dmenu_ignorecase", False, "dmenu matches menu items case insensitively"),
-        ("dmenu_lines", None, "dmenu lists items vertically, with the given number of lines"),
-        ("dmenu_prompt", None, "defines the prompt to be displayed to the left of the input field"),
-        ("dmenu_height", None, "defines the height (only supported by some dmenu forks)"),
-    ]
+        "dmenu_command": ('dmenu', "the dmenu command to be launched"),
+        "dmenu_bottom": (False, "dmenu appears at the bottom of the screen"),
+        "dmenu_ignorecase": (False, "dmenu matches menu items case insensitively"),
+        "dmenu_lines": (None, "dmenu lists items vertically, with the given number of lines"),
+        "dmenu_prompt": (None, "defines the prompt to be displayed to the left of the input field"),
+        "dmenu_height": (None, "defines the height (only supported by some dmenu forks)"),
+    }
 
     def __init__(self, **config):
         base.RunCommand.__init__(self, **config)
@@ -128,9 +128,9 @@ class DmenuRun(Dmenu):
 
     """
 
-    defaults = [
-        ("dmenu_command", 'dmenu_run', "the dmenu command to be launched"),
-    ]
+    defaults = {
+        "dmenu_command": ('dmenu_run', "the dmenu command to be launched"),
+    }
 
     def __init__(self, **config):
         Dmenu.__init__(self, **config)
@@ -146,14 +146,14 @@ class J4DmenuDesktop(Dmenu):
     https://github.com/enkore/j4-dmenu-desktop
     """
 
-    defaults = [
-        ("j4dmenu_command", 'j4-dmenu-desktop', "the dmenu command to be launched"),
-        ("j4dmenu_use_xdg_de", False, "read $XDG_CURRENT_DESKTOP to determine the desktop environment"),
-        ("j4dmenu_display_binary", False, "display binary name after each entry"),
-        ("j4dmenu_generic", True, "include the generic name of desktop entries"),
-        ("j4dmenu_terminal", None, "terminal emulator used to start terminal apps"),
-        ("j4dmenu_usage_log", None, "file used to sort items by usage frequency"),
-    ]
+    defaults = {
+        "j4dmenu_command": ('j4-dmenu-desktop', "the dmenu command to be launched"),
+        "j4dmenu_use_xdg_de": (False, "read $XDG_CURRENT_DESKTOP to determine the desktop environment"),
+        "j4dmenu_display_binary": (False, "display binary name after each entry"),
+        "j4dmenu_generic": (True, "include the generic name of desktop entries"),
+        "j4dmenu_terminal": (None, "terminal emulator used to start terminal apps"),
+        "j4dmenu_usage_log": (None, "file used to sort items by usage frequency"),
+    }
 
     def __init__(self, **config):
         Dmenu.__init__(self, **config)

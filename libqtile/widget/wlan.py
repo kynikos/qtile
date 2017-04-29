@@ -60,20 +60,18 @@ except ImportError:
 class Wlan(base.InLoopPollText):
     """Displays Wifi ssid and quality"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('interface', 'wlan0', 'The interface to monitor'),
-        ('update_interval', 1, 'The update interval.'),
-        (
-            'disconnected_message',
+    defaults = {
+        'interface': ('wlan0', 'The interface to monitor'),
+        'update_interval': (1, 'The update interval.'),
+        'disconnected_message': (
             'Disconnected',
             'String to show when the wlan is diconnected.'
         ),
-        (
-            'format',
+        'format': (
             '{essid} {quality}/70',
             'Display format. For percents you can use "{essid} {percent:2.0%}"'
         )
-    ]
+    }
 
     def __init__(self, **config):
         base.InLoopPollText.__init__(self, **config)

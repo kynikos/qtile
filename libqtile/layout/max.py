@@ -29,8 +29,7 @@ class Max(_SimpleLayoutBase):
     screens. Conceptually, the windows are managed as a stack, with commands to
     switch to next and previous windows in the stack.
     """
-
-    defaults = [("name", "max", "Name of this layout.")]
+    defaults = {"name": ("max", "Name of this layout.")}
 
     def __init__(self, **config):
         _SimpleLayoutBase.__init__(self, **config)

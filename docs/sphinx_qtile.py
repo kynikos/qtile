@@ -52,10 +52,10 @@ qtile_class_template = Template('''
         * - key
           - default
           - description
-        {% for key, default, description in defaults %}
+        {% for key, values in defaults %}
         * - ``{{ key }}``
-          - ``{{ default|pprint }}``
-          - {{ description }}
+          - ``{{ values[0]|pprint }}``
+          - {{ values[1] }}
         {% endfor %}
     {% endif %}
     {% if commandable %}

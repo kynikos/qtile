@@ -97,11 +97,10 @@ class Systray(window._Window, base._Widget):
         EventMask.Exposure
 
     orientations = base.ORIENTATION_HORIZONTAL
-
-    defaults = [
-        ('icon_size', 20, 'Icon width'),
-        ('padding', 5, 'Padding between icons'),
-    ]
+    defaults = {
+        'icon_size': (20, 'Icon width'),
+        'padding': (5, 'Padding between icons'),
+    }
 
     def __init__(self, **config):
         base._Widget.__init__(self, bar.CALCULATED, **config)

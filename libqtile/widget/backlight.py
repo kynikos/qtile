@@ -36,24 +36,22 @@ class Backlight(base.InLoopPollText):
 
     orientations = base.ORIENTATION_HORIZONTAL
 
-    defaults = [
-        ('backlight_name', 'acpi_video0', 'ACPI name of a backlight device'),
-        (
-            'brightness_file',
+    defaults = {
+        'backlight_name': ('acpi_video0', 'ACPI name of a backlight device'),
+        'brightness_file': (
             'brightness',
             'Name of file with the '
             'current brightness in /sys/class/backlight/backlight_name'
         ),
-        (
-            'max_brightness_file',
+        'max_brightness_file': (
             'max_brightness',
             'Name of file with the '
             'maximum brightness in /sys/class/backlight/backlight_name'
         ),
-        ('update_interval', .2, 'The delay in seconds between updates'),
-        ('step', 10, 'Percent of backlight every scroll changed'),
-        ('format', '{percent: 2.0%}', 'Display format')
-    ]
+        'update_interval': (.2, 'The delay in seconds between updates'),
+        'step': (10, 'Percent of backlight every scroll changed'),
+        'format': ('{percent: 2.0%}', 'Display format')
+    }
 
     def __init__(self, **config):
         base.InLoopPollText.__init__(self, **config)

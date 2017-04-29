@@ -87,15 +87,13 @@ class CurrentLayoutIcon(base._TextBox):
     """
     orientations = base.ORIENTATION_HORIZONTAL
 
-    defaults = [
-        (
-            'scale',
+    defaults = {
+        'scale': (
             1,
             'Scale factor relative to the bar height.  '
             'Defaults to 1'
         ),
-        (
-            'custom_icon_paths',
+        'custom_icon_paths': (
             [],
             'List of folders where to search icons before'
             'using built-in icons or icons in ~/.icons dir.  '
@@ -103,7 +101,7 @@ class CurrentLayoutIcon(base._TextBox):
             'missing icons for custom layouts.  '
             'Defaults to empty list.'
         )
-    ]
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, "", **config)

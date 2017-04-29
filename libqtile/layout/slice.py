@@ -94,15 +94,15 @@ class Slice(Delegate):
     and delegates other window placement to other layout
     """
 
-    defaults = [
-        ("width", 256, "Slice width"),
-        ("side", "left", "Side of the slice (left, right, top, bottom)"),
-        ("name", "max", "Name of this layout."),
-        ("wname", None, "WM_NAME to match"),
-        ("wmclass", None, "WM_CLASS to match"),
-        ("role", None, "WM_WINDOW_ROLE to match"),
-        ("fallback", Max(), "Fallback layout"),
-    ]
+    defaults = {
+        "width": (256, "Slice width"),
+        "side": ("left", "Side of the slice (left, right, top, bottom)"),
+        "name": ("max", "Name of this layout."),
+        "wname": (None, "WM_NAME to match"),
+        "wmclass": (None, "WM_CLASS to match"),
+        "role": (None, "WM_WINDOW_ROLE to match"),
+        "fallback": (Max(), "Fallback layout"),
+    }
 
     def __init__(self, **config):
         Delegate.__init__(self, **config)

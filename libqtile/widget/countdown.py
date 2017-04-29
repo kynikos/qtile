@@ -29,13 +29,13 @@ from . import base
 class Countdown(base.InLoopPollText):
     """A simple countdown timer text widget"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('format', '{D}d {H}h {M}m {S}s',
+    defaults = {
+        'format': ('{D}d {H}h {M}m {S}s',
             'Format of the displayed text. Available variables:'
             '{D} == days, {H} == hours, {M} == minutes, {S} seconds.'),
-        ('update_interval', 1., 'Update interval in seconds for the clock'),
-        ('date', datetime.now(), "The datetime for the endo of the countdown"),
-    ]
+        'update_interval': (1., 'Update interval in seconds for the clock'),
+        'date': (datetime.now(), "The datetime for the endo of the countdown"),
+    }
 
     def __init__(self, **config):
         base.InLoopPollText.__init__(self, **config)

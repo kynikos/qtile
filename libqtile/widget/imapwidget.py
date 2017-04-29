@@ -59,12 +59,12 @@ class ImapWidget(base.ThreadedPollText):
     can be whatever you choose, of course.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('mbox', '"INBOX"', 'mailbox to fetch'),
-        ('label', 'INBOX', 'label for display'),
-        ('user', None, 'email username'),
-        ('server', None, 'email server name'),
-    ]
+    defaults = {
+        'mbox': ('"INBOX"', 'mailbox to fetch'),
+        'label': ('INBOX', 'label for display'),
+        'user': (None, 'email username'),
+        'server': (None, 'email server name'),
+    }
 
     def __init__(self, **config):
         base.ThreadedPollText.__init__(self, **config)

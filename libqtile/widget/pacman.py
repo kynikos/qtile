@@ -27,11 +27,11 @@ class Pacman(base.ThreadedPollText):
     installation.
     """
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ('unavailable', 'ffffff', 'Unavailable Color - no updates.'),
-        ('execute', None, 'Command to execute on click'),
-        ('update_interval', 60, "The update interval."),
-    ]
+    defaults = {
+        'unavailable': ('ffffff', 'Unavailable Color - no updates.'),
+        'execute': (None, 'Command to execute on click'),
+        'update_interval': (60, "The update interval."),
+    }
 
     def __init__(self, **config):
         base.deprecated("Pacman is deprecated, please use CheckUpdates")

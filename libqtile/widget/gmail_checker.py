@@ -30,14 +30,14 @@ import re
 class GmailChecker(base.ThreadedPollText):
     """A simple gmail checker"""
     orientations = base.ORIENTATION_HORIZONTAL
-    defaults = [
-        ("update_interval", 30, "Update time in seconds."),
-        ("username", None, "username"),
-        ("password", None, "password"),
-        ("email_path", "INBOX", "email_path"),
-        ("fmt", "inbox[%s],unseen[%s]", "fmt"),
-        ("status_only_unseen", False, "Only show unseen messages"),
-    ]
+    defaults = {
+        "update_interval": (30, "Update time in seconds."),
+        "username": (None, "username"),
+        "password": (None, "password"),
+        "email_path": ("INBOX", "email_path"),
+        "fmt": ("inbox[%s],unseen[%s]", "fmt"),
+        "status_only_unseen": (False, "Only show unseen messages"),
+    }
 
     def __init__(self, **config):
         base._TextBox.__init__(self, **config)
