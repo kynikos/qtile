@@ -194,6 +194,7 @@ class _Window(command.CommandObject):
         self.window_type = "normal"
         self._float_state = NOT_FLOATING
         self._demands_attention = False
+        self.focus_lock = False
 
         self.hints = {
             'input': True,
@@ -519,8 +520,15 @@ class _Window(command.CommandObject):
     def can_steal_focus(self):
         return self.window.get_wm_type() != 'notification'
 
-    def set_input_focus(self):
+    def set_input_focus(self, lock=False):
         self.window.set_input_focus()
+        self.focus_lock = lock
+
+    def locks_focus(self):
+        return self.focus_lock
+
+    def unlock_focus(self):
+        self.focus_lock = False
 
     def focus(self, warp):
 
