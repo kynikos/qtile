@@ -214,6 +214,10 @@ class _Group(command.CommandObject):
             where only one window is "maximized" at a time, and it doesn't make
             sense for the mouse to automatically move.
         """
+        # Merge self.focusHistory with self.windows *****************************************************
+        #  Create a Windows/FocusHistory class **********************************************************
+        # Use self.focusHistory to create commands to change windows by focus ***************************
+        #  The max layout could switch to next/previous window like that ********************************
         if self.qtile._drag and not force:
             # don't change focus while dragging windows (unless forced)
             return
