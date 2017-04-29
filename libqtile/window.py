@@ -194,6 +194,7 @@ class _Window(command.CommandObject):
         self.window_type = "normal"
         self._float_state = NOT_FLOATING
         self._demands_attention = False
+        self.focus_lock = False
 
         self.hints = {
             'input': True,
@@ -519,7 +520,13 @@ class _Window(command.CommandObject):
     def can_steal_focus(self):
         return self.window.get_wm_type() != 'notification'
 
-    def focus(self, warp):
+    def locks_focus(self):
+        return self.focus_lock
+
+    def unlock_focus(self):
+        self.focus_lock = False
+
+    def focus(self, warp, lock=False):
 
         # Workaround for misbehaving java applications (actually it might be
         # qtile who misbehaves by not implementing some X11 protocol correctly)
@@ -562,6 +569,7 @@ class _Window(command.CommandObject):
             # Never send FocusIn to java windows
             if not is_java and self.hints['input']:
                 self.window.set_input_focus()
+                self.focus_lock = lock
             try:
                 if warp and self.qtile.config.cursor_warp:
                     self.window.warp_pointer(self.width // 2, self.height // 2)
