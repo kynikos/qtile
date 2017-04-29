@@ -31,6 +31,9 @@ class TextBox(base._TextBox):
     """A flexible textbox that can be updated from bound keys, scripts, and qshell"""
     orientations = base.ORIENTATION_HORIZONTAL
     defaults = {
+        "width": (bar.CALCULATED, "Width of the widget. Can be either "
+                               "``bar.CALCULATED`` or a width in pixels."),
+        "text": (" ", ""),
         "font": ("sans", "Text font"),
         "fontsize": (None, "Font pixel size. Calculated if None."),
         "fontshadow": (None, "font shadow color, default is None(no shadow)"),
@@ -38,8 +41,12 @@ class TextBox(base._TextBox):
         "foreground": ("#ffffff", "Foreground colour."),
     }
 
-    def __init__(self, text=" ", width=bar.CALCULATED, **config):
-        base._TextBox.__init__(self, text=text, width=width, **config)
+    def __init__(self, **config):
+        base._TextBox.__init__(self,
+                       text=config.get("text", TextBox.defaults["text"][0]),
+                       width=config.get("width", TextBox.defaults["width"][0]),
+                       **config)
+        self.add_defaults(TextBox.defaults)
 
     def update(self, text):
         self.text = text
