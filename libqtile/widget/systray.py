@@ -96,7 +96,8 @@ class Systray(window._Window, base._Widget):
     _windowMask = EventMask.StructureNotify | \
         EventMask.Exposure
 
-    orientations = base.ORIENTATION_HORIZONTAL
+    orientations = base.ORIENTATION_BOTH
+
     defaults = {
         'icon_size': (20, 'Icon width'),
         'padding': (5, 'Padding between icons'),
@@ -109,9 +110,12 @@ class Systray(window._Window, base._Widget):
         self.screen = 0
 
     def calculate_length(self):
-        width = sum(i.width for i in self.icons.values())
-        width += self.padding * len(self.icons)
-        return width
+        if self.bar.horizontal:
+            length = sum(i.width for i in self.icons.values())
+        else:
+            length = sum(i.height for i in self.icons.values())
+        length += self.padding * len(self.icons)
+        return length
 
     def _configure(self, qtile, bar):
         base._Widget._configure(self, qtile, bar)
@@ -179,37 +183,56 @@ class Systray(window._Window, base._Widget):
         return False
 
     def draw(self):
-        xoffset = self.padding
-        self.drawer.clear(self.background or self.bar.background)
-        self.drawer.draw(offsetx=self.offset, width=self.length)
-        for pos, icon in enumerate(self.icons.values()):
-            icon.window.set_attribute(backpixmap=self.drawer.pixmap)
-            icon.place(
-                self.offset + xoffset,
-                self.bar.height // 2 - self.icon_size // 2,
-                icon.width, self.icon_size,
+        def GIVE_ME_A_BETTER_NAME(icon):
+            icon.unhide()
+            data = [
+                self.qtile.conn.atoms["_XEMBED_EMBEDDED_NOTIFY"],
+                xcffib.xproto.Time.CurrentTime,
                 0,
-                None
+                self.bar.window.window.wid,
+                XEMBED_PROTOCOL_VERSION
+            ]
+            u = xcffib.xproto.ClientMessageData.synthetic(data, "I" * 5)
+            event = xcffib.xproto.ClientMessageEvent.synthetic(
+                format=32,
+                window=icon.window.wid,
+                type=self.qtile.conn.atoms["_XEMBED"],
+                data=u
             )
-            if icon.hidden:
-                icon.unhide()
-                data = [
-                    self.qtile.conn.atoms["_XEMBED_EMBEDDED_NOTIFY"],
-                    xcffib.xproto.Time.CurrentTime,
-                    0,
-                    self.bar.window.window.wid,
-                    XEMBED_PROTOCOL_VERSION
-                ]
-                u = xcffib.xproto.ClientMessageData.synthetic(data, "I" * 5)
-                event = xcffib.xproto.ClientMessageEvent.synthetic(
-                    format=32,
-                    window=icon.window.wid,
-                    type=self.qtile.conn.atoms["_XEMBED"],
-                    data=u
-                )
-                self.window.send_event(event)
+            self.window.send_event(event)
 
-            xoffset += icon.width + self.padding
+        offset = self.padding
+        self.drawer.clear(self.background or self.bar.background)
+        if self.bar.horizontal:
+            self.drawer.draw(offsetx=self.offset, width=self.length)
+            for pos, icon in enumerate(self.icons.values()):
+                icon.window.set_attribute(backpixmap=self.drawer.pixmap)
+                icon.place(
+                    self.offset + offset,
+                    self.bar.height // 2 - self.icon_size // 2,
+                    icon.width, self.icon_size,
+                    0,
+                    None
+                )
+                if icon.hidden:
+                    GIVE_ME_A_BETTER_NAME(icon)
+
+                offset += icon.width + self.padding
+        else:
+            self.drawer.draw(offsety=self.offset, width=self.length)
+            for pos, icon in enumerate(self.icons.values()):
+                icon.window.set_attribute(backpixmap=self.drawer.pixmap)
+                icon.place(
+                    self.bar.width // 2 - self.icon_size // 2,
+                    self.offset + offset,
+                    self.icon_size, icon.height,
+                    0,
+                    None
+                )
+                if icon.hidden:
+                    GIVE_ME_A_BETTER_NAME(icon)
+
+                offset += icon.height + self.padding
 
     def finalize(self):
         base._Widget.finalize(self)
