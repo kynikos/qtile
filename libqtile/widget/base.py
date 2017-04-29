@@ -36,6 +36,8 @@ import subprocess
 import threading
 import warnings
 
+# Widget configuration docs don't show inherited default options *****************************
+
 # Each widget class must define which bar orientation(s) it supports by setting
 # these bits in an 'orientations' class attribute. Simply having the attribute
 # inherited by superclasses is discouraged, because if a superclass that was

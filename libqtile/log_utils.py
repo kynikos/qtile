@@ -100,6 +100,8 @@ def init_log(log_level=WARNING, log_path=True, log_truncate=False,
             pass
         log_path = os.path.expanduser(log_path)
         if log_truncate:
+            # Maybe this can be replaced by RotatingFileHandler's 'mode' parameter ************
+            #  or by calling its 'doRollover()' method ****************************************
             with open(log_path, "w"):
                 pass
         file_handler = RotatingFileHandler(
