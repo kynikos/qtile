@@ -21,9 +21,9 @@ except ImportError:
 
 
 class Mock(MagicMock):
-    # xcbq does a dir() on objects and pull stuff out of them and tries to sort
-    # the result. MagicMock has a bunch of stuff that can't be sorted, so let's
-    # like about dir().
+    # xcbq does a dir() on objects and pulls stuff out of them and tries to
+    # sort the result. MagicMock has a bunch of stuff that can't be sorted, so
+    # let's lie about dir().
     def __dir__(self):
         return []
 
