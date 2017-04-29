@@ -66,24 +66,29 @@ class LaunchBar(base._Widget):
     """
     orientations = base.ORIENTATION_HORIZONTAL
     defaults = {
+        "width": (bar.CALCULATED, "Width of the widget. Can be either "
+                               "``bar.CALCULATED`` or a width in pixels."),
+        'progs': ([], """a list of tuple\
+(software_name, command_to_execute, comment) for example:
+('thunderbird', 'thunderbird -safe-mode', 'launch thunderbird in safe mode')
+('logout', 'qsh:self.qtile.cmd_shutdown()', 'logout from qtile')"""),
         'padding': (2, 'Padding between icons'),
         'default_icon': ('/usr/share/icons/oxygen/256x256/mimetypes/'
          'application-x-executable.png', 'Default icon not found'),
     }
 
-    def __init__(self, progs=None, width=bar.CALCULATED, **config):
-        base._Widget.__init__(self, width, **config)
-        if progs is None:
-            progs = []
+    def __init__(self, **config):
+        base._Widget.__init__(self, config.get("width",
+                                    LaunchBar.defaults["width"][0]), **config)
         self.add_defaults(LaunchBar.defaults)
         self.surfaces = {}
         self.icons_files = {}
         self.icons_widths = {}
         self.icons_offsets = {}
-        # For now, ignore the comments but may be one day it will be useful
+        # For now, ignore the comments but maybe one day it will be useful
         self.progs = dict(enumerate([{'name': prog[0], 'cmd': prog[1],
                                       'comment': prog[2] if len(prog) > 2 else
-                                      None} for prog in progs]))
+                                      None} for prog in self.progs]))
         self.progs_name = set([prog['name'] for prog in self.progs.values()])
         self.length_type = bar.STATIC
         self.length = 0
