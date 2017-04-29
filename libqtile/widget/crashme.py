@@ -42,9 +42,15 @@ class _CrashMe(base._TextBox):
         (which is recommended).
     """
     orientations = base.ORIENTATION_HORIZONTAL
+    defaults = {
+        "width": (bar.CALCULATED, "A fixed width, or bar.CALCULATED to "
+                "calculate the width automatically (which is recommended)"),
+    }
 
-    def __init__(self, width=bar.CALCULATED, **config):
-        base._TextBox.__init__(self, "Crash me !", width, **config)
+    def __init__(self, **config):
+        base._TextBox.__init__(self, "Crash me !", config.get("width",
+                                    _CrashMe.defaults["width"][0]), **config)
+        self.add_defaults(_CrashMe.defaults)
 
     def _configure(self, qtile, bar):
         base._Widget._configure(self, qtile, bar)
