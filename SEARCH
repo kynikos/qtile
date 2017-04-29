@@ -1,0 +1,31 @@
+Find: %.windows
+/home/dario/Archive/Development/qtile/libqtile/config.py:258:            return (True, [i.window.wid for i in self.group.windows])
+/home/dario/Archive/Development/qtile/libqtile/config.py:272:                for i in self.group.windows:
+/home/dario/Archive/Development/qtile/libqtile/dgroups.py:206:                    len(group.windows) <= 0:
+/home/dario/Archive/Development/qtile/libqtile/widget/tasklist.py:121:        for w in self.bar.screen.group.windows:
+/home/dario/Archive/Development/qtile/libqtile/widget/tasklist.py:193:        for w in self.bar.screen.group.windows:
+/home/dario/Archive/Development/qtile/libqtile/widget/groupbox.py:192:        return len([w for w in group.windows if w.urgent]) > 0
+/home/dario/Archive/Development/qtile/libqtile/widget/groupbox.py:220:            elif g.windows:
+/home/dario/Archive/Development/qtile/libqtile/widget/windowtabs.py:33:        for w in self.bar.screen.group.windows:
+/home/dario/Archive/Development/qtile/libqtile/manager.py:419:            for i in list(group.windows):
+/home/dario/Archive/Development/qtile/libqtile/manager.py:1445:            for w in group.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:20:        self.windows = set()
+/home/dario/Archive/Development/qtile/libqtile/group.py:27:        # windows that never received focus; refer to self.windows for the
+/home/dario/Archive/Development/qtile/libqtile/group.py:37:        self.windows = set()
+/home/dario/Archive/Development/qtile/libqtile/group.py:117:        if self.screen and len(self.windows):
+/home/dario/Archive/Development/qtile/libqtile/group.py:119:                normal = [x for x in self.windows if not x.floating]
+/home/dario/Archive/Development/qtile/libqtile/group.py:121:                    x for x in self.windows
+/home/dario/Archive/Development/qtile/libqtile/group.py:159:            for i in self.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:165:        for i in self.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:168:        for i in self.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:183:            if win not in self.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:202:            windows=[i.name for i in self.windows],
+/home/dario/Archive/Development/qtile/libqtile/group.py:211:        self.windows.add(win)
+/home/dario/Archive/Development/qtile/libqtile/group.py:233:        self.windows.remove(win)
+/home/dario/Archive/Development/qtile/libqtile/group.py:286:            return (True, [i.window.wid for i in self.windows])
+/home/dario/Archive/Development/qtile/libqtile/group.py:300:                for i in self.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:346:            if skip_empty and not group.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:366:        for w in self.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:371:        if not self.windows:
+/home/dario/Archive/Development/qtile/libqtile/group.py:384:        if not self.windows:
+/home/dario/Archive/Development/qtile/libqtile/window.py:1294:        for window in self.group.windows:

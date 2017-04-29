@@ -46,24 +46,24 @@ class _Group(command.CommandObject):
     def __init__(self, name, layout=None):
         self.name = name
         self.customLayout = layout  # will be set on _configure
-        self.windows = set()
+        self.windows = set()  # *************************************************************
         self.qtile = None
         self.layouts = []
         self.floating_layout = None
         # self.focusHistory lists the group's windows in the order they
         # received focus, from the oldest (first item) to the currently
         # focused window (last item); NB the list does *not* contain any
-        # windows that never received focus; refer to self.windows for the
+        # windows that never received focus; refer to self.windows for the  # *************************************************************
         # complete set
-        self.focusHistory = []
+        self.focusHistory = []  # *************************************************************
         self.screen = None
         self.currentLayout = None
 
     def _configure(self, layouts, floating_layout, qtile):
         self.screen = None
         self.currentLayout = 0
-        self.focusHistory = []
-        self.windows = set()
+        self.focusHistory = []  # *************************************************************
+        self.windows = set()  # *************************************************************
         self.qtile = qtile
         self.layouts = [i.clone(self) for i in layouts]
         self.floating_layout = floating_layout
@@ -72,7 +72,7 @@ class _Group(command.CommandObject):
             self.customLayout = None
 
     @property
-    def currentWindow(self):
+    def currentWindow(self):  # *************************************************************
         try:
             return self.focusHistory[-1]
         except IndexError:
@@ -80,7 +80,7 @@ class _Group(command.CommandObject):
             return None
 
     @currentWindow.setter
-    def currentWindow(self, win):
+    def currentWindow(self, win):  # *************************************************************
         try:
             self.focusHistory.remove(win)
         except ValueError:
@@ -88,7 +88,7 @@ class _Group(command.CommandObject):
             pass
         self.focusHistory.append(win)
 
-    def _remove_from_focus_history(self, win):
+    def _remove_from_focus_history(self, win):  # *************************************************************
         try:
             index = self.focusHistory.index(win)
         except ValueError:
@@ -498,3 +498,17 @@ class _Group(command.CommandObject):
 
     def __repr__(self):
         return "<group.Group (%r)>" % self.name
+
+class _GroupWindows(object):
+    """
+        This is the actual container for the window objects in _Group.
+        The order in which windows are stored reflects the order in which they
+        received focus: the last item is the currently focused window; the
+        second-to-last item is the window that had focus just before the
+        current one; the first item is the window that was last focused before
+        any other window in the group.
+    """
+    def __init__(self):
+        self.windows = []
+
+    def add(self):
